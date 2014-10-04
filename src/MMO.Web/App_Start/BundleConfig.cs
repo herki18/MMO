@@ -24,6 +24,18 @@ namespace MMO.Web.App_Start
             frontedStyles.Include("~/content/styles/application.less");
 
             bundles.Add(frontedStyles);
+            
+            var backendStyles = new StyleBundle("~/styles/backend");
+
+            backendStyles.Transforms.Add(new StyleTransformer(
+                new List<ITranslator> {
+                    new LessTranslator()
+                }));
+
+            backendStyles.Transforms.Add(new CssMinify());
+            backendStyles.Include("~/content/styles/application.less");
+
+            bundles.Add(backendStyles);
         }
     }
 }

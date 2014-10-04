@@ -1,0 +1,30 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+        <title>MMO Admin</title>
+        @Styles.Render("~/styles/backend")
+    </head>
+    <body>
+        <div class="nav navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "index", "home")</li>
+                    <li>@Html.ActionLink("Users", "index", "users")</li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <div class="container">
+            @RenderBody()
+        </div>
+        
+    </body>
+</html>
