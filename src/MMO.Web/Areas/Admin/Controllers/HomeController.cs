@@ -3,6 +3,7 @@ using MMO.Web.Areas.Admin.ViewModels;
 
 namespace MMO.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class HomeController : Controller
     {
         // GET: Admin/Home

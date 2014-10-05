@@ -6,12 +6,38 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        
-        <title>MMO</title>
-        @Styles.Render("~/styles/frontend")
-    </head>
-    <body>
+<head>
+
+    <title>MMO Admin</title>
+
+    @Styles.Render("~/styles/frontend")
+</head>
+<body>
+    <div class="nav navbar-default">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                @if (User.IsInRole("registered"))
+                {
+                    <li>@Html.ActionLink("Home", "index", "home")</li>
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Logout", "logout", "auth", new {}, new { @class = "post" })</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Login", "login", "auth")</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container">
         @RenderBody()
-    </body>
+    </div>
+    @Scripts.Render("~/js/frontend")
+</body>
 </html>

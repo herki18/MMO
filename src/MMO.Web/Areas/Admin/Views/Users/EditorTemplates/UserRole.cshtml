@@ -1,0 +1,11 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.UserRole
+
+
+<div class="check-box">
+    @Html.HiddenFor(t=>t.Id)
+    @Html.HiddenFor(t=>t.Name)
+    
+    @Html.EditorFor(t => t.IsSeleceted)
+    @Html.LabelFor(t=>t.IsSeleceted, Model.Name)
+    
+</div>

@@ -1,0 +1,20 @@
+﻿@model MMO.Web.ViewModels.AuthLogin
+           
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()
+    
+    <div class="form-group">
+        @Html.LabelFor(f=>f.UserName)
+        @Html.TextBoxFor(f=>f.UserName, new {@class="form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f=>f.Password)
+        @Html.PasswordFor(f=>f.Password, new {@class="form-control"})
+    </div>
+
+    <p>
+        <input type="submit", value="Login", class="btn btn-primary btn-sm"/>
+    </p>
+}

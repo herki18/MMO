@@ -1,0 +1,46 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.UserIndex
+           
+<h1>User Index</h1>
+
+<p>
+    @Html.ActionLink("Create User", "create", new {}, new { @class= "btn btn-default btn-sm"})
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users) {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@string.Join(", ", user.Roles.Select(t=>t.Name))</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("edit", new {user.Id})" class="btn btn-xs btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            edit
+                        </a>
+                        <a href="@Url.Action("resetpassword", new {user.Id})" class="btn btn-xs btn-default">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            reset password
+                        </a>
+                        <a href="@Url.Action("delete", new {user.Id})" class="btn btn-xs btn-danger post" data-message="Are you sure you want to delete @user.UserName">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

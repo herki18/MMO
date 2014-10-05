@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MMO.Web.Controllers
 {
+    [Authorize(Roles = "registered")]
     public class HomeController : Controller
     {
         public ActionResult Index()

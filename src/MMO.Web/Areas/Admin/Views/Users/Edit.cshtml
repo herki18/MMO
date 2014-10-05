@@ -1,0 +1,30 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.UserEdit
+           
+
+<h1>Edit User @Model.UserName</h1>
+
+@using (Html.BeginForm()) {
+    
+    @Html.ValidationSummary()
+    
+    <div class="form-group">
+        @Html.LabelFor(f=>f.UserName)
+        @Html.TextBoxFor(f=>f.UserName, new {@class="form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Email)
+        @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Roles)
+        @Html.EditorFor(f => f.Roles, new { @class = "form-control" })
+    </div>
+
+    <p>
+        <input type="submit" value="Update User" class="btn btn-default btn-sm"/>
+        or
+        @Html.ActionLink("go back", "index")
+    </p>
+}
