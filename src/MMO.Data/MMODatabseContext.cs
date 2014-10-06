@@ -12,6 +12,7 @@ namespace MMO.Data
     {
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<DeployToken> DeployTokens { get; set; }
  
         public MMODatabseContext() : base("MMOContext")
         { }

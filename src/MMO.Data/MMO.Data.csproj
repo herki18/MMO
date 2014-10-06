@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\DeployToken.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201410041620439_Add-Migration.cs" />
@@ -72,6 +73,10 @@
     <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.cs" />
     <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.Designer.cs">
       <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410062139598_createdeploytoken.cs" />
+    <Compile Include="Migrations\201410062139598_createdeploytoken.Designer.cs">
+      <DependentUpon>201410062139598_createdeploytoken.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMODatabseContext.cs" />
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.resx">
       <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410062139598_createdeploytoken.resx">
+      <DependentUpon>201410062139598_createdeploytoken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

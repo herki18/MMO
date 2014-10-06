@@ -195,6 +195,7 @@
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PasswordResetController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -204,6 +205,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AuthLogin.cs" />
     <Compile Include="ViewModels\HomeIndex.cs" />
+    <Compile Include="ViewModels\PasswordResetError.cs" />
+    <Compile Include="ViewModels\PasswordResetIndex.cs" />
+    <Compile Include="ViewModels\PasswordResetReset.cs" />
     <Compile Include="ViewModels\RegisterCreate.cs" />
     <Compile Include="ViewModels\RegisterSuccess.cs" />
     <Compile Include="ViewModels\RegisterVerify.cs" />
@@ -299,6 +303,9 @@
     <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\UserMailer\VerifyEmail.cshtml" />
     <Content Include="Views\UserMailer\ResetPassword.cshtml" />
+    <Content Include="Views\PasswordReset\Index.cshtml" />
+    <Content Include="Views\PasswordReset\Confirm.cshtml" />
+    <Content Include="Views\PasswordReset\Reset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

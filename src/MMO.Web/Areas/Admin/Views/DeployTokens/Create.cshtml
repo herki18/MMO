@@ -1,0 +1,20 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.DeployTokensCreate
+
+<h1>Create Token</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.IpAddress)
+        @Html.TextBoxFor(f => f.IpAddress, new { @class = "form-control" })
+    </div>
+
+    <p>
+        <input type="submit" value="Create Token" class="btn btn-default btn-sm" />
+        or
+        @Html.ActionLink("go back", "index")
+    </p>
+}
