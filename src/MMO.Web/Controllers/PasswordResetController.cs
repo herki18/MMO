@@ -80,6 +80,7 @@ namespace MMO.Web.Controllers
             }
 
             user.SetPassword(form.NewPassword);
+            user.ClearResetPasswordToken();
             _database.SaveChanges();
 
             Auth.User = user;

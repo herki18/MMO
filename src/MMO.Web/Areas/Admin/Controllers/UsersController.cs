@@ -74,6 +74,8 @@ namespace MMO.Web.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult Edit(int id, UserEdit form) {
+            var user = _databse.Users.Include(t => t.Roles).Single(t => t.Id == id);
+
             if (_databse.Users.Any(t => t.UserName == form.UserName && t.Id != id))
             {
                 ModelState.AddModelError("Username", "Usernames must be unique");
@@ -82,12 +84,18 @@ namespace MMO.Web.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("Email", "Emails must be unique");
             }
+            if (user.UserName == "admin" && form.UserName != user.UserName) {
+                ModelState.AddModelError("Username", "Cannot change admin username");
+            }
+            if (Auth.User.Id == id && !form.Roles.Any(t => t.Name == "admin" && t.IsSeleceted)) {
+                ModelState.AddModelError("Username", "Cannot remove admin role from yourself!");
+            }
             if (!ModelState.IsValid)
             {
                 return View(form);
             }
 
-            var user = _databse.Users.Include(t=>t.Roles).Single(t=>t.Id == id);
+            
 
             user.Email = form.Email;
             user.UserName = form.UserName;
@@ -136,6 +144,10 @@ namespace MMO.Web.Areas.Admin.Controllers
         public ActionResult Delete(int id) {
             var user = _databse.Users.Find(id);
             if (user == null) {
+                return RedirectToAction("index");
+            }
+
+            if (user.Id == Auth.User.Id) {
                 return RedirectToAction("index");
             }
 

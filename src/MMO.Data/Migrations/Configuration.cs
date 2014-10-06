@@ -22,16 +22,21 @@ namespace MMO.Data.Migrations
             var registeredRole = new Role {Name = "registered"};
             context.Roles.AddOrUpdate(t => t.Name, registeredRole);
 
-            var admin = new User() {
-                UserName = "admin",
-                Roles = new[] {adminRole, registeredRole},
-                Email = "admin@admin.ee"
-            };
+            
 
-            admin.SetPassword("admin");
+            if (!context.Users.Any(t => t.UserName == "admin")) {
+                var admin = new User()
+                {
+                    UserName = "admin",
+                    Roles = new[] { adminRole, registeredRole },
+                    Email = "admin@admin.ee"
+                };
 
-            if(!context.Users.Any(t=>t.UserName == "admin")) 
+                admin.SetPassword("admin");
+
                 context.Users.Add(admin);
+            }
+                
 
         }
     }

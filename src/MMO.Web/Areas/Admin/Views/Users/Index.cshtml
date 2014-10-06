@@ -34,10 +34,13 @@
                             <i class="glyphicon glyphicon-lock"></i>
                             reset password
                         </a>
-                        <a href="@Url.Action("delete", new {user.Id})" class="btn btn-xs btn-danger post" data-message="Are you sure you want to delete @user.UserName">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            delete
-                        </a>
+                        @if (user.Id != Auth.User.Id)
+                        {
+                            <a href="@Url.Action("delete", new {user.Id})" class="btn btn-xs btn-danger post" data-message="Are you sure you want to delete @user.UserName">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                delete
+                            </a>
+                        }
                     </div>
                 </td>
             </tr>
