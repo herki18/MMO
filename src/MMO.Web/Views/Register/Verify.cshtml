@@ -1,0 +1,12 @@
+﻿@model MMO.Web.ViewModels.RegisterVerify
+
+@if (Model.DidVerify) {
+    <h1>You account is now activated</h1>
+    <p>@Html.ActionLink("Click here", "index", "home") to download the launcher</p>
+}
+else {
+    <h1>Verification token was incorect</h1>
+    <p>
+        If you copied and pasted the link from your email, please verify that it is correct.
+    </p>
+}

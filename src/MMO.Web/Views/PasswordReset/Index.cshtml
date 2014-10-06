@@ -1,0 +1,27 @@
+﻿@using MMO.Web.ViewModels
+@model MMO.Web.ViewModels.PasswordResetIndex
+          
+<h1>Reset Password</h1>
+ 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    if (Model.Error == PasswordResetError.TokeExpired) {
+        <p>Your password reset token has expired, please try again</p>
+    }else if(Model.Error == PasswordResetError.TokenNotFound)
+    {
+        <p>Invalid password reset Url</p>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Email)
+        @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+    </div>
+
+    <p>
+        <input type="submit"  value="Reset Password"  class="btn btn-primary btn-sm" />
+        or
+        @Html.ActionLink("cancel", "index", "home")
+    </p>
+}

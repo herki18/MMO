@@ -1,0 +1,16 @@
+@using Mvc.Mailer
+<h1>Welcome @ViewBag.Username</h1>
+
+@{
+    var tokerUrl = Url.Abs(Url.Action("verify", "register", new {token = ViewBag.Token}));
+}
+<p>
+    Please
+    <a href="@tokerUrl">click here</a>
+    to verify your account
+</p>
+
+<p>
+    Or, copy and paste the following link:
+    @tokerUrl
+</p>

@@ -65,6 +65,14 @@
     <Compile Include="Migrations\201410041835327_AddEmailToUsers.Designer.cs">
       <DependentUpon>201410041835327_AddEmailToUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410052332314_AddVerifyEmailToken.cs" />
+    <Compile Include="Migrations\201410052332314_AddVerifyEmailToken.Designer.cs">
+      <DependentUpon>201410052332314_AddVerifyEmailToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.cs" />
+    <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.Designer.cs">
+      <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMODatabseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +87,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410041835327_AddEmailToUsers.resx">
       <DependentUpon>201410041835327_AddEmailToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410052332314_AddVerifyEmailToken.resx">
+      <DependentUpon>201410052332314_AddVerifyEmailToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.resx">
+      <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

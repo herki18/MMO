@@ -1,0 +1,26 @@
+﻿@model MMO.Web.ViewModels.PasswordResetReset
+           
+<h1>Welcome back @Model.Username</h1>
+
+<p>Please create new password below:</p>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.NewPassword)
+        @Html.PasswordFor(f => f.NewPassword, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.NewPasswordConfirm)
+        @Html.PasswordFor(f => f.NewPasswordConfirm, new { @class = "form-control" })
+    </div>
+    
+    <p>
+        <input type="submit" value="Reset Password" class="btn btn-primary btn-sm" />
+        or
+        @Html.ActionLink("cancel", "index", "home")
+    </p>
+}

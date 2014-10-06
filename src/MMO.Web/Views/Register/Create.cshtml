@@ -1,0 +1,36 @@
+﻿@model MMO.Web.ViewModels.RegisterCreate
+
+
+<h1>Create User</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Username)
+        @Html.TextBoxFor(f => f.Username, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(f => f.Email)
+        @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(f => f.Password)
+        @Html.PasswordFor(f => f.Password, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.PasswordConfirm)
+        @Html.PasswordFor(f => f.PasswordConfirm, new { @class = "form-control" })
+    </div>
+    
+    <p>
+        <input type="submit" value="Register" class="btn btn-default btn-sm" />
+        or
+        @Html.ActionLink("cancel", "login", "auth")
+    </p>
+}
