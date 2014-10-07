@@ -1,11 +1,20 @@
 ﻿@model MMO.Web.ViewModels.HomeIndex
 
 <h1>MMO</h1>
-<p>Welcome to the site.</p>
 
 @if (User.Identity.IsAuthenticated)
 {
     <p>Welcome, @User.Identity.Name!</p>
+
+    if (Model.LatestLauncher != null) {
+        <p>
+            <a class="btn btn-sm btn-primary" href="@Url.Action("download", "download", new {id = Model.LatestLauncher.Id})">Download launcher</a>
+            <small>Version @Model.LatestLauncher.Version.Version</small>
+        </p>
+    }
+    else {
+        <p>No launcher is available</p>
+    }
 }
 else {
   <p>You are not logged in</p>

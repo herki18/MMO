@@ -13,6 +13,7 @@ namespace MMO.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             var namespaces = new[] { "MMO.Web.Controllers" };
+            routes.MapRoute("Download", "download/{id}", new {controller="download", action="download"}, namespaces);
             routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, namespaces
             ).DataTokens["UseNamespaceFallback"] = false;
         }

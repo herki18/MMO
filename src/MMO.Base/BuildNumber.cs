@@ -8,6 +8,8 @@ namespace MMO.Base
     public class BuildNumber : IEquatable<BuildNumber> {
         public short Version { get; private set; }
         public int Timestamp { get; private set; }
+        
+        protected BuildNumber() { }
 
         public BuildNumber(short version, int timestamp) {
             Version = version;
