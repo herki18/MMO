@@ -14,7 +14,7 @@ namespace MMO.Web.Controllers
         private readonly MMODatabseContext _database = new MMODatabseContext();
         public ActionResult Index() {
             return View(new HomeIndex() {
-                LatestLauncher = _database.Launchers.OrderByDescending(t => t.Version.Version).ThenByDescending(f => f.Version.Timestamp).FirstOrDefault();
+                LatestLauncher = _database.Launchers.OrderByDescending(t => t.Version.Version).ThenByDescending(f => f.Version.Timestamp).FirstOrDefault()
             });
         }
     }

@@ -1,0 +1,21 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.RolesEdit
+
+
+<h1>Edit User @Model.Name</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Name)
+        @Html.TextBoxFor(f => f.Name, new { @class = "form-control" })
+    </div>
+    
+    <p>
+        <input type="submit" value="Update Role" class="btn btn-default btn-sm" />
+        or
+        @Html.ActionLink("go back", "index")
+    </p>
+}

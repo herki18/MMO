@@ -216,6 +216,7 @@
     <Compile Include="Controllers\Api.V1\ClientController.cs" />
     <Compile Include="Controllers\Api.V1\LauncherController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasswordResetController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />

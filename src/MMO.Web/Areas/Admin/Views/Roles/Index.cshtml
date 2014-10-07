@@ -1,0 +1,45 @@
+﻿@model MMO.Web.Areas.Admin.ViewModels.RolesIndex
+
+<h1>User Index</h1>
+
+<p>
+    @Html.ActionLink("Create role", "create", new { }, new { @class = "btn btn-default btn-sm" })
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.Roles)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+                <td>
+                    @if (role.CanEditAndDelete)
+                    {
+                        <div class="btn-group">
+                            <a href="@Url.Action("edit", new {role.Id})" class="btn btn-xs btn-primary">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                edit
+                            </a>
+                            <a href="@Url.Action("delete", new {role.Id})" class="btn btn-xs btn-danger post" data-message="Are you sure you want to delete @role.Name">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                delete
+                            </a>
+                        </div>
+                    }
+                    else {
+                        @: n/a
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

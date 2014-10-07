@@ -16,10 +16,10 @@ namespace MMO.Data.Migrations
 
         protected override void Seed(MMO.Data.MMODatabseContext context) {
             
-            var adminRole = new Role {Name = "admin"};
+            var adminRole = new Role {Name = "admin", IsUserDefined = false};
             context.Roles.AddOrUpdate(t => t.Name, adminRole);
 
-            var registeredRole = new Role {Name = "registered"};
+            var registeredRole = new Role {Name = "registered", IsUserDefined = false};
             context.Roles.AddOrUpdate(t => t.Name, registeredRole);
 
             

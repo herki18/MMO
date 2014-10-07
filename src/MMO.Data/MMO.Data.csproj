@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201410071529396_AddUploadSizeAndName.Designer.cs">
       <DependentUpon>201410071529396_AddUploadSizeAndName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410071941217_AddUserDefinedRoles.cs" />
+    <Compile Include="Migrations\201410071941217_AddUserDefinedRoles.Designer.cs">
+      <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMODatabseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410071529396_AddUploadSizeAndName.resx">
       <DependentUpon>201410071529396_AddUploadSizeAndName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410071941217_AddUserDefinedRoles.resx">
+      <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

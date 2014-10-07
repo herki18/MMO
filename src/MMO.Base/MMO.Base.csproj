@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api.V1\LatestClientResult.cs" />
+    <Compile Include="Api.V1\LatestLauncherResult.cs" />
     <Compile Include="BuildNumber.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
