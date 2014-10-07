@@ -168,11 +168,14 @@
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Home.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\EditorTemplates\UserRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\UserRole.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ResetPassword.cshtml" />
     <Content Include="Areas\Admin\Views\DeployTokens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DeployTokens\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
     <None Include="ClearScript.V8\ClearScriptV8-32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -202,10 +205,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DeployTokensController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\DeployTokensCreate.cs" />
     <Compile Include="Areas\Admin\ViewModels\DeployTokensIndex.cs" />
     <Compile Include="Areas\Admin\ViewModels\HomeIndex.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RolesCreate.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RolesEdit.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RolesIndex.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserCreate.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserEdit.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserIndex.cs" />

@@ -1,10 +1,21 @@
 ﻿
-@model dynamic
-@{
-    ViewBag.Title = "Index";
+@model MMO.Web.Areas.Admin.ViewModels.HomeIndex
+
+<h1>MMO Settings</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.EnabledGameRoles)
+        @Html.EditorFor(f => f.EnabledGameRoles)
+    </div>
+
+    <p>
+        <input type="submit" value="Save Setting" class="btn btn-default btn-sm" />
+        or
+        @Html.ActionLink("go back", "index")
+    </p>
 }
-
-<h2>Index test</h2>
-
-@Model
-

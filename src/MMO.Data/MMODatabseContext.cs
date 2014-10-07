@@ -17,7 +17,9 @@ namespace MMO.Data
 
         public DbSet<Upload> Uploads { get; set; }
         public DbSet<Launcher> Launchers { get; set; }
-        public DbSet<Client> Clients { get; set; } 
+        public DbSet<Client> Clients { get; set; }
+
+        public DbSet<MMOSetting> MmoSettings { get; set; }
  
         public MMODatabseContext() : base("MMOContext")
         { }

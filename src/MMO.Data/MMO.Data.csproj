@@ -58,6 +58,7 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\DeployToken.cs" />
     <Compile Include="Entities\Launcher.cs" />
+    <Compile Include="Entities\MMOSetting.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Upload.cs" />
     <Compile Include="Entities\User.cs" />
@@ -93,9 +94,14 @@
     <Compile Include="Migrations\201410071941217_AddUserDefinedRoles.Designer.cs">
       <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410072021141_AddMMOSetting.cs" />
+    <Compile Include="Migrations\201410072021141_AddMMOSetting.Designer.cs">
+      <DependentUpon>201410072021141_AddMMOSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMODatabseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MMOSettingService.cs" />
     <Compile Include="UploadType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410071941217_AddUserDefinedRoles.resx">
       <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410072021141_AddMMOSetting.resx">
+      <DependentUpon>201410072021141_AddMMOSetting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
