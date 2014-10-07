@@ -101,6 +101,11 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -110,6 +115,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
@@ -158,6 +171,8 @@
     <Content Include="Areas\Admin\Views\Users\EditorTemplates\UserRole.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\DeployTokens\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DeployTokens\Create.cshtml" />
     <None Include="ClearScript.V8\ClearScriptV8-32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -183,9 +198,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeployTokensController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DeployTokensCreate.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DeployTokensIndex.cs" />
     <Compile Include="Areas\Admin\ViewModels\HomeIndex.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserCreate.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserEdit.cs" />
@@ -193,6 +212,9 @@
     <Compile Include="Areas\Admin\ViewModels\UserResetPassword.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserRole.cs" />
     <Compile Include="Auth.cs" />
+    <Compile Include="Controllers\Api.V1\AuthenticationController.cs" />
+    <Compile Include="Controllers\Api.V1\ClientController.cs" />
+    <Compile Include="Controllers\Api.V1\LauncherController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasswordResetController.cs" />
@@ -200,7 +222,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AuthorizeDeployTokenAttribute.cs" />
+    <Compile Include="Infrastructure\MultipartDataProvider.cs" />
     <Compile Include="Infrastructure\RoleProvider.cs" />
+    <Compile Include="Infrastructure\UploadService.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AuthLogin.cs" />
@@ -316,8 +341,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MMO.Base\MMO.Base.csproj">
+      <Project>{D2957FEB-5A73-4E4D-B9EB-5F6E913F7A6A}</Project>
+      <Name>MMO.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MMO.Data\MMO.Data.csproj">
       <Project>{8ba5ed75-4edc-4764-8482-3cefa46132bc}</Project>
       <Name>MMO.Data</Name>

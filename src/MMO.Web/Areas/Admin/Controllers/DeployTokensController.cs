@@ -32,7 +32,7 @@ namespace MMO.Web.Areas.Admin.Controllers
             var token = new DeployToken(form.IpAddress);
             _database.DeployTokens.Add(token);
             _database.SaveChanges();
-            return View(form);
+            return RedirectToAction("index");
         }
 
         [HttpPost]

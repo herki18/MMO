@@ -19,7 +19,7 @@
         @foreach (var token in Model.Tokens)
         {
             <tr>
-                <input type="text" readonly="readonly" value="@token.Token" class="form-control"/>
+                <td><input type="text" readonly="readonly" value="@token.Token" class="form-control"/></td>
                 <td>@token.IpAddress</td>
                 <td>
                     <div class="btn-group">
