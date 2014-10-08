@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api.V1\AuthGenerateTokenRequest.cs" />
+    <Compile Include="Api.V1\AuthGenerateTokenResponse.cs" />
+    <Compile Include="Api.V1\AuthValidateRequest.cs" />
+    <Compile Include="Api.V1\AuthValidateResponse.cs" />
     <Compile Include="Api.V1\LatestClientResult.cs" />
     <Compile Include="Api.V1\LatestLauncherResult.cs" />
     <Compile Include="BuildNumber.cs" />
