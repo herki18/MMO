@@ -63,45 +63,9 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Upload.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Migrations\201410041620439_Add-Migration.cs" />
-    <Compile Include="Migrations\201410041620439_Add-Migration.Designer.cs">
-      <DependentUpon>201410041620439_Add-Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410041835327_AddEmailToUsers.cs" />
-    <Compile Include="Migrations\201410041835327_AddEmailToUsers.Designer.cs">
-      <DependentUpon>201410041835327_AddEmailToUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410052332314_AddVerifyEmailToken.cs" />
-    <Compile Include="Migrations\201410052332314_AddVerifyEmailToken.Designer.cs">
-      <DependentUpon>201410052332314_AddVerifyEmailToken.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.cs" />
-    <Compile Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.Designer.cs">
-      <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410062139598_createdeploytoken.cs" />
-    <Compile Include="Migrations\201410062139598_createdeploytoken.Designer.cs">
-      <DependentUpon>201410062139598_createdeploytoken.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410071512411_AddUploadTables.cs" />
-    <Compile Include="Migrations\201410071512411_AddUploadTables.Designer.cs">
-      <DependentUpon>201410071512411_AddUploadTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410071529396_AddUploadSizeAndName.cs" />
-    <Compile Include="Migrations\201410071529396_AddUploadSizeAndName.Designer.cs">
-      <DependentUpon>201410071529396_AddUploadSizeAndName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410071941217_AddUserDefinedRoles.cs" />
-    <Compile Include="Migrations\201410071941217_AddUserDefinedRoles.Designer.cs">
-      <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410072021141_AddMMOSetting.cs" />
-    <Compile Include="Migrations\201410072021141_AddMMOSetting.Designer.cs">
-      <DependentUpon>201410072021141_AddMMOSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410072139598_AddClientAuthenticationToken.cs" />
-    <Compile Include="Migrations\201410072139598_AddClientAuthenticationToken.Designer.cs">
-      <DependentUpon>201410072139598_AddClientAuthenticationToken.cs</DependentUpon>
+    <Compile Include="Migrations\201410081504118_AddInitialBuild.cs" />
+    <Compile Include="Migrations\201410081504118_AddInitialBuild.Designer.cs">
+      <DependentUpon>201410081504118_AddInitialBuild.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMODatabseContext.cs" />
@@ -115,38 +79,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410041620439_Add-Migration.resx">
-      <DependentUpon>201410041620439_Add-Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410041835327_AddEmailToUsers.resx">
-      <DependentUpon>201410041835327_AddEmailToUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410052332314_AddVerifyEmailToken.resx">
-      <DependentUpon>201410052332314_AddVerifyEmailToken.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410061716592_AddedToUserNewPasswordTokenFields.resx">
-      <DependentUpon>201410061716592_AddedToUserNewPasswordTokenFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410062139598_createdeploytoken.resx">
-      <DependentUpon>201410062139598_createdeploytoken.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410071512411_AddUploadTables.resx">
-      <DependentUpon>201410071512411_AddUploadTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410071529396_AddUploadSizeAndName.resx">
-      <DependentUpon>201410071529396_AddUploadSizeAndName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410071941217_AddUserDefinedRoles.resx">
-      <DependentUpon>201410071941217_AddUserDefinedRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410072021141_AddMMOSetting.resx">
-      <DependentUpon>201410072021141_AddMMOSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410072139598_AddClientAuthenticationToken.resx">
-      <DependentUpon>201410072139598_AddClientAuthenticationToken.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +86,11 @@
       <Project>{d2957feb-5a73-4e4d-b9eb-5f6e913f7a6a}</Project>
       <Name>MMO.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410081504118_AddInitialBuild.resx">
+      <DependentUpon>201410081504118_AddInitialBuild.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

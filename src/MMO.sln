@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Base", "MMO.Base\MMO.Base.csproj", "{D2957FEB-5A73-4E4D-B9EB-5F6E913F7A6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Client", "MMO.Client\MMO.Client.csproj", "{AA348F8C-29A5-498E-9FD5-BBCDFC69BB63}"
@@ -24,6 +22,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.CJR.Photon", "MMO.CJR.Photon\MMO.CJR.Photon.csproj", "{C7C98D3B-6B8D-442C-8080-9D1A83EE27B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.CJR.Framework", "MMO.CJR.Framework\MMO.CJR.Framework.csproj", "{A567964A-1C1A-4B18-8198-21E8F30B575C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A0B097FB-AB24-4608-BD22-B21B33720BD3}"
+	ProjectSection(SolutionItems) = preProject
+		MMOBuild.proj = MMOBuild.proj
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Build.Tasks", "MMO.Build.Tasks\MMO.Build.Tasks.csproj", "{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,8 +80,15 @@ Global
 		{A567964A-1C1A-4B18-8198-21E8F30B575C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A567964A-1C1A-4B18-8198-21E8F30B575C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A567964A-1C1A-4B18-8198-21E8F30B575C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F} = {A0B097FB-AB24-4608-BD22-B21B33720BD3}
 	EndGlobalSection
 EndGlobal

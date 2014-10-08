@@ -1,3 +1,7 @@
+/Build
+/src/MMO.Client/BuildInfo.cs
+/src/MMO.Launcher/BuildInfo.cs
+
 Unity/Editor/Library/
 Unity/Client/Library/
 

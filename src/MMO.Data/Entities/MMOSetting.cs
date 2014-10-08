@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MMO.Data.Entities
 {
@@ -6,10 +7,10 @@ namespace MMO.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required, MaxLength(128), Index(IsUnique = true)]
         public string Key { get; set; }
 
-        [Required]
+        [Required, MaxLength]
         public string Value { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace MMO.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class AddClientAuthenticationToken : IMigrationMetadata
+    public sealed partial class AddInitialBuild : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddClientAuthenticationToken));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddInitialBuild));
         
         string IMigrationMetadata.Id
         {
-            get { return "201410072139598_AddClientAuthenticationToken"; }
+            get { return "201410081504118_AddInitialBuild"; }
         }
         
         string IMigrationMetadata.Source

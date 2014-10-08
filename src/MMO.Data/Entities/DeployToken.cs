@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 
 namespace MMO.Data.Entities
@@ -9,7 +10,7 @@ namespace MMO.Data.Entities
         public int Id { get; set; }
         [Required, MaxLength(64)]
         public string IpAddress { get; set; }
-        [Required, MaxLength(128)]
+        [Required, MaxLength(128), Index(IsUnique = true)]
         public string Token { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MMO.Data.Entities
 {
@@ -7,7 +8,7 @@ namespace MMO.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(64)]
+        [Required, MaxLength(64), Index(IsUnique = true)]
         public string Token { get; set; }
 
         [Required, MaxLength(64)]

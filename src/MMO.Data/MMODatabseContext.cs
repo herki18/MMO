@@ -28,6 +28,8 @@ namespace MMO.Data
             buildNumberMap.Property(t => t.Timestamp);
             buildNumberMap.Property(t => t.Version);
 
+
+
             mapping.Entity<Upload>()
                 .Map<Client>(t => t.Requires("Type").HasValue((int)UploadType.Client))
                 .Map<Launcher>(t => t.Requires("Type").HasValue((int)UploadType.Launcher));
@@ -35,6 +37,7 @@ namespace MMO.Data
             mapping.Entity<User>()
                 .HasMany(t => t.Roles)
                 .WithMany(t => t.Users);
+
         }
     }
 }

@@ -1,0 +1,87 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Env Condition="'$(Env)' == ''">dev</Env>
+    <VersionNumber Condition="'$(VersionNumber)' == ''">1</VersionNumber>
+    <MsBuildCommunityTasksPath>$(MSBuildThisFileDirectory)/Tasks</MsBuildCommunityTasksPath>
+    <UnityPath Condition="'$(UnityPath)' == ''">D:\Program Files\Unity 5.0.0b5</UnityPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Env)' == 'dev'">
+    <BuildConfig>Debug</BuildConfig>
+    <Domain></Domain>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Env)' == 'prod'">
+    <BuildConfig>Release</BuildConfig>
+    <Domain></Domain>
+  </PropertyGroup>
+
+  <Import Project="$(MsBuildCommunityTasksPath)/MSBuild.Community.Tasks.Targets" />
+  
+  <UsingTask TaskName="MMO.Build.Tasks.GetUnixTimestamp" AssemblyFile="MMO.Build.Tasks./bin/$(BuildConfig)/MMO.Build.Tasks.dll" />
+  <UsingTask TaskName="MMO.Build.Tasks.UpdateBuildInfo" AssemblyFile="MMO.Build.Tasks./bin/$(BuildConfig)/MMO.Build.Tasks.dll" />
+  <UsingTask TaskName="MMO.Build.Tasks.UploadFile" AssemblyFile="MMO.Build.Tasks./bin/$(BuildConfig)/MMO.Build.Tasks.dll" />
+
+  <Target Name="BuildSolution">
+    <MSBuild Projects="MMO.Build.Tasks/MMO.Build.Tasks.csproj" Properties="Configuration=$(BuildConfig)" />
+    <GetUnixTimestamp>
+      <Output TaskParameter="Timestamp" PropertyName="Timestamp"/>
+    </GetUnixTimestamp>
+    <UpdateBuildInfo 
+      Timestamp="$(Timestamp)" 
+      VersionNumber="$(VersionNumber)" 
+      Env="$(Env)" 
+      Files="MMO.Client/BuildInfo.cs,MMO.Launcher/BuildInfo.cs">
+    </UpdateBuildInfo>
+    
+    <MSBuild Projects="MMO.sln" Properties="Configuration=$(BuildConfig)"/> 
+  </Target>
+
+  <Target Name="DeployPhoton" DependsOnTargets="BuildSolution">
+    <!--Copy photon servers to proper folders-->
+  </Target>
+
+  <Target Name="DeployWebSite" DependsOnTargets="BuildSolution">
+    <!--build deploy package-->
+    <!--execute web deploy-->
+  </Target>
+
+  <Target Name="DeployLauncher" DependsOnTargets="BuildSolution">
+    <CreateItem Include="$(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Launcher.exe;
+                $(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Launcher.exe.config;
+                $(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Base.dll;" >
+      <Output TaskParameter="Include" ItemName="LauncherZipFiles" />
+    </CreateItem>
+    <!--zip launcher-->
+    <Zip ZipFileName="../Build/Launcher/Launcher.zip" Files="@(LauncherZipFiles)" Flatten="true"></Zip>
+    <!--upload launcher-->
+    <UploadFile Type="Launcher" 
+                Env="$(Env)" 
+                Domain="$(Domain)" 
+                DeployToken="$(DeployToken)" 
+                File="../Build/Launcher/Launcher.zip" 
+                Timestamp="$(Timestamp)" 
+                VersionNumber="$(VersionNumber)"/>
+  </Target>
+
+  <Target Name="DeployClient" DependsOnTargets="BuildSolution">
+    <!--Build standalone unity build-->
+    <Exec Command='"$(UnityPath)\Editor\Unity.exe" -nographics -quit -batchmode -projectPath "$(MSBuildThisFileDirectory)../Unity\Client" -buildWindowsPlayer "$(MSBuildThisFileDirectory)../Build\Work\Client\MMO.exe"' />
+    <!--zip unity build-->
+    <CreateItem Include="$(MSBuildThisFileDirectory)..\Build\Work\Client\**\*.*" >
+      <Output TaskParameter="Include" ItemName="ClientZipFiles" />
+    </CreateItem>
+
+    <Zip ZipFileName="$(MSBuildThisFileDirectory)..\Build\Client\Client.zip" Files="@(ClientZipFiles)" WorkingDirectory="$(MSBuildThisFileDirectory)..\Build\Work\Client" ></Zip>
+    <!--upload zip-->
+    <UploadFile Type="Client"
+                    Env="$(Env)"
+                    Domain="$(Domain)"
+                    DeployToken="$(DeployToken)"
+                    File="../Build/Client/Client.zip"
+                    Timestamp="$(Timestamp)"
+                    VersionNumber="$(VersionNumber)"/>
+  </Target>
+
+
+</Project>

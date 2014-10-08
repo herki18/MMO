@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMO.Data.Entities
 {
@@ -18,13 +17,13 @@ namespace MMO.Data.Entities
         [Required, MaxLength(128)]
         public string Password { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required, MaxLength(128), Index(IsUnique = true)]
         public string Email { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(64), Index(IsUnique = true)]
         public string VerifyEmailToken { get; set; }
 
-        [MaxLength(64)]
+        [MaxLength(64), Index(IsUnique = true)]
         public string ResetPasswordToken { get; set; }
 
         public DateTime? ResetPasswordTokenExpiresAt { get; set; }
