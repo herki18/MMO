@@ -9,11 +9,19 @@
   <PropertyGroup Condition="'$(Env)' == 'dev'">
     <BuildConfig>Debug</BuildConfig>
     <Domain>mmo.com</Domain>
+    <SetParamsFile>Parameters.Local.config</SetParamsFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Env)' == 'prod'">
     <BuildConfig>Release</BuildConfig>
     <Domain>mmo.com</Domain>
+    <SetParamsFile>Parameters.Production.config</SetParamsFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Env)' == 'sta'">
+    <BuildConfig>Release</BuildConfig>
+    <Domain>mmo.com</Domain>
+    <SetParamsFile>Parameters.Staging.config</SetParamsFile>
   </PropertyGroup>
 
   <Import Project="$(MsBuildCommunityTasksPath)/MSBuild.Community.Tasks.Targets" />
@@ -45,7 +53,9 @@
 
   <Target Name="DeployWebSite" DependsOnTargets="BuildSolution">
     <!--build deploy package-->
+    <MSBuild Projects="MMO.Web/MMO.Web.csproj" Targets="Package" Properties="Configuration=$(BuildConfig);PackageLocation=..\..\Build\Web\Package.zip" />
     <!--execute web deploy-->
+    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)..\" Command='lib\msdeploy\msdeploy.exe -verb:sync -source:package="Buid\Web\Package.zip" -dest:auto,computerName=$(WebDeployComputer),userName=$(WebDeployUser),password=$(WepDeployPassword) -skip:directory=\\Uploads$ -setParamFile="$(MSBuildThisFileDirectory)MMO.Web\Config\$(SetParamsFile)" ' />
   </Target>
 
   <Target Name="DeployLauncher" DependsOnTargets="BuildSolution">

@@ -1,2 +1,58 @@
 // Deploy photon example
 msbuild MMOBuild.proj /t:DeployPhoton /p:PhotonDeployFolder=D:\Development\Photon\deploy
+
+// Deploy web example
+msbuild MMOBuild.proj /t:DeployWebSite /p:WebDeployComputer=localhost /p:WebDeployUser=deploy /p:WebDeployPassword=test
+
+// Deploy Launcher
+msbuild MMOBuild.proj /t:DeployLauncher /p:Env=sta /p:DeployToken=
+
+// Deploy Client
+msbuild MMOBuild.proj /t:DeployClient /p:Env=sta /p:DeployToken=
+
+
+// Msbuild diffrent builds
+sta = for staging
+dev = for development
+prod = for release to production
+
+Configurations MSDeploy web page
+1. Run mmc
+2. Add Local Users
+3. Create new user deploy and password test
+4. Add new group MSDepSvcUsers
+5. Add deploy to this group
+6. restart web deployment agent service
+
+if msdeploy tryes to reference wrong DbSqlPackage 
+1. open regedit
+2. find IIS Extensions under Microsoft
+3. Dlete this key from there
+
+if inetserv config redirection.config acces deneid
+1. go there and give network service user acces
+2. restart web deployment agent service 
+
+
+- Install Web Deploy (complete installation)
+- Ensure Web Deployment Agent Service is running
+- Create new user deploy (with password, don't require password reset)
+- Create MSDepSvcUsers group and add deploy to it
+- Give network service premissions to inetsrv/config
+
+- Create custom params file
+
+in windows folder where .net 4 is located when you get error 500.21
+aspnet_regiis.exe -i
+
+
+visual studio 2012 redist both 32 and 64
+visual studio 2013 redist both 32 and 64
+
+http://www.iis.net/downloads
+
+Add Upload folder and add premmisions
+
+
+
+// TeamCity

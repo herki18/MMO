@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MMO.Base;
 using MMO.Data.Entities;
+using MMO.Data.Migrations;
 
 namespace MMO.Data
 {
@@ -18,10 +19,11 @@ namespace MMO.Data
         public DbSet<Launcher> Launchers { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<MMOSetting> MmoSettings { get; set; }
-        public DbSet<ClientAuthenticationToken> ClientAuthenticationTokens { get; set; } 
- 
-        public MMODatabseContext() : base("MMOContext")
-        { }
+        public DbSet<ClientAuthenticationToken> ClientAuthenticationTokens { get; set; }
+
+        public MMODatabseContext() : base("MMOContext") {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MMODatabseContext, Configuration>("MMOContext"));
+        }
 
         protected override void OnModelCreating(DbModelBuilder mapping) {
              var buildNumberMap = mapping.ComplexType<BuildNumber>();
