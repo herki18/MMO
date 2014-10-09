@@ -12,8 +12,8 @@ msbuild MMOBuild.proj /t:DeployClient /p:Env=sta /p:DeployToken=
 
 
 // Msbuild diffrent builds
-sta = for staging
 dev = for development
+sta = for staging
 prod = for release to production
 
 Configurations MSDeploy web page
@@ -53,6 +53,13 @@ http://www.iis.net/downloads
 
 Add Upload folder and add premmisions
 
-
+subinacl tool to give access to users
 
 // TeamCity
+
+
+// Users
+Deploy
+TeamCity
+
+// Groups
