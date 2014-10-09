@@ -4,6 +4,7 @@
 
 Unity/Editor/Library/
 Unity/Client/Library/
+Unity/Client/Temp
 
 *.suo
 *.user
