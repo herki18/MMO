@@ -39,6 +39,8 @@
 
   <Target Name="DeployPhoton" DependsOnTargets="BuildSolution">
     <!--Copy photon servers to proper folders-->
+    <Exec Command="..\lib\msdeploy\msdeploy.exe -verb:sync -source:contentpath='$(MSBuildThisFileDirectory)MMO.Server.Master/bin/$(BuildConfig)' -dest:contentpath='$(PhotonDeployFolder)/MMO.Server.Master/bin' -skip:directory=\\Cache$"  />
+    <Exec Command="..\lib\msdeploy\msdeploy.exe -verb:sync -source:contentpath='$(MSBuildThisFileDirectory)MMO.Server.Region/bin/$(BuildConfig)' -dest:contentpath='$(PhotonDeployFolder)/MMO.Server.Region/bin' -skip:directory=\\Cache$"  />
   </Target>
 
   <Target Name="DeployWebSite" DependsOnTargets="BuildSolution">
@@ -85,3 +87,4 @@
 
 
 </Project>
+
