@@ -7,8 +7,8 @@
     <ProjectGuid>{9997211D-0FD5-490A-9BEB-2BD70B0FBCE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MMO.Master</RootNamespace>
-    <AssemblyName>MMO.Master</AssemblyName>
+    <RootNamespace>MMO.Server.Master</RootNamespace>
+    <AssemblyName>MMO.Server.Master</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

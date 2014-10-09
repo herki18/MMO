@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Base", "MMO.Base\MMO.Base.csproj", "{D2957FEB-5A73-4E4D-B9EB-5F6E913F7A6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Client", "MMO.Client\MMO.Client.csproj", "{AA348F8C-29A5-498E-9FD5-BBCDFC69BB63}"
@@ -11,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Data", "MMO.Data\MMO.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Server", "MMO.Server\MMO.Server.csproj", "{7DCCD09B-94FF-4BAE-A414-F2BF6765A854}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Master", "MMO.Master\MMO.Master.csproj", "{9997211D-0FD5-490A-9BEB-2BD70B0FBCE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Server.Master", "MMO.Server.Master\MMO.Server.Master.csproj", "{9997211D-0FD5-490A-9BEB-2BD70B0FBCE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Region", "MMO.Region\MMO.Region.csproj", "{B70D92D4-EAF4-471F-8F48-FDD4E0A4277E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Server.Region", "MMO.Server.Region\MMO.Server.Region.csproj", "{B70D92D4-EAF4-471F-8F48-FDD4E0A4277E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Launcher", "MMO.Launcher\MMO.Launcher.csproj", "{226DEB52-37D6-4907-BA1A-5F4F870BC69A}"
 EndProject
@@ -29,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A0B097FB
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Build.Tasks", "MMO.Build.Tasks\MMO.Build.Tasks.csproj", "{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DFEA3384-85D7-4DF4-9229-5E19FCBA7C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{7DCCD09B-94FF-4BAE-A414-F2BF6765A854} = {DFEA3384-85D7-4DF4-9229-5E19FCBA7C76}
+		{9997211D-0FD5-490A-9BEB-2BD70B0FBCE5} = {DFEA3384-85D7-4DF4-9229-5E19FCBA7C76}
+		{B70D92D4-EAF4-471F-8F48-FDD4E0A4277E} = {DFEA3384-85D7-4DF4-9229-5E19FCBA7C76}
 		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F} = {A0B097FB-AB24-4608-BD22-B21B33720BD3}
 	EndGlobalSection
 EndGlobal

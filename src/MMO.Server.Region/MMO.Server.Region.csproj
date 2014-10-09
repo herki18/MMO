@@ -7,8 +7,8 @@
     <ProjectGuid>{B70D92D4-EAF4-471F-8F48-FDD4E0A4277E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MMO.Region</RootNamespace>
-    <AssemblyName>MMO.Region</AssemblyName>
+    <RootNamespace>MMO.Server.Region</RootNamespace>
+    <AssemblyName>MMO.Server.Region</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
