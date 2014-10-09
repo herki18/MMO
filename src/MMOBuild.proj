@@ -8,12 +8,12 @@
   
   <PropertyGroup Condition="'$(Env)' == 'dev'">
     <BuildConfig>Debug</BuildConfig>
-    <Domain></Domain>
+    <Domain>mmo.com</Domain>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Env)' == 'prod'">
     <BuildConfig>Release</BuildConfig>
-    <Domain></Domain>
+    <Domain>mmo.com</Domain>
   </PropertyGroup>
 
   <Import Project="$(MsBuildCommunityTasksPath)/MSBuild.Community.Tasks.Targets" />

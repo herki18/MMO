@@ -13,11 +13,13 @@ namespace MMO.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start() {
-            GlobalConfiguration.Configure(WebApiConfig.Configure);
 
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AreaRegistration.RegisterAllAreas();
+            
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configuration.EnsureInitialized();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace MMO.Build.Tasks
             multiPartData.Headers.Add("deploy-token", DeployToken);
 
             var client = new HttpClient();
-            var response = client.PostAsync(string.Format("https://{0}/api/v1/{1}/upload", Domain, apiEndPoint),
+            var response = client.PostAsync(string.Format("http://{0}/api/v1/{1}/upload", Domain, apiEndPoint),
                 multiPartData).Result;
 
             if (!response.IsSuccessStatusCode) {

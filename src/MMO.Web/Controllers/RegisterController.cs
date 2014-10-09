@@ -8,6 +8,7 @@ using MMO.Data;
 using MMO.Data.Entities;
 using MMO.Web.Mailers;
 using MMO.Web.ViewModels;
+using System.Data.Entity;
 
 namespace MMO.Web.Controllers
 {
@@ -65,7 +66,7 @@ namespace MMO.Web.Controllers
         }
 
         public ActionResult Verify(string token) {
-            var user = _databse.Users.SingleOrDefault(t => t.VerifyEmailToken == token);
+            var user = _databse.Users.Include(t=>t.Roles).SingleOrDefault(t => t.VerifyEmailToken == token);
             if (user == null || user.VerifyEmailToken == null || !user.VerifyEmailToken.Equals(token, StringComparison.OrdinalIgnoreCase)) {
                 return View(new RegisterVerify {
                     DidVerify = false

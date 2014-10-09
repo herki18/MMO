@@ -10,7 +10,7 @@ using MMO.Web.Infrastructure;
 
 namespace MMO.Web.Controllers.Api.V1
 {
-    [System.Web.Mvc.RoutePrefix("api/v1/launchers")]
+    [RoutePrefix("api/v1/launchers")]
     public class LauncherController : ApiController
     {
         private readonly MMODatabseContext _database = new MMODatabseContext();
@@ -27,14 +27,14 @@ namespace MMO.Web.Controllers.Api.V1
                 new Uri(Request.RequestUri, Url.Route("Download", new { id = launcher.Id })).AbsoluteUri);
         }
 
-        [System.Web.Mvc.Route("upload"), System.Web.Mvc.HttpPost, AuthorizeDeployToken]
+        [Route("upload"), System.Web.Mvc.HttpPost, AuthorizeDeployToken]
         public async Task<IHttpActionResult> UploadLauncher() {
             if (!Request.Content.IsMimeMultipartContent())
             {
                 return BadRequest();
             }
 
-            return await UploadService.Upload(_database, Request, () => new Client());
+            return await UploadService.Upload(_database, Request, () => new Launcher());
         }
     }
 }
