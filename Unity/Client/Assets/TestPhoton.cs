@@ -10,7 +10,7 @@ public class TestPhoton : MonoBehaviour, IPhotonPeerListener {
     public void Awake() {
         _regionServers = new List<PhotonPeer>();
         _peer = new PhotonPeer(this, ConnectionProtocol.Udp);
-        _peer.Connect("127.0.0.1:5055", "MMOMaster");
+        _peer.Connect("168.63.57.205:5055", "MMOMaster");
     }
 
     public void Update() {
