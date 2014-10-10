@@ -1,0 +1,8 @@
+Guide: 
+
+
+1. Create new user named TeamCity
+2. Download Teamcity
+3. Configure teamcity using TeamCity user
+4. Create TeamCity user admin and password admin
+5. 

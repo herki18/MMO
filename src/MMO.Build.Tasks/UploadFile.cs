@@ -48,7 +48,7 @@ namespace MMO.Build.Tasks
             var client = new HttpClient();
             var response = client.PostAsync(string.Format("http://{0}/api/v1/{1}/upload", Domain, apiEndPoint),
                 multiPartData).Result;
-
+            
             if (!response.IsSuccessStatusCode) {
                 Log.LogError("Error upload file: {0}, {1}, {2}",response.StatusCode, response.Content.ToString(), string.Format("http://{0}/api/v1/{1}/upload", Domain, apiEndPoint));
             }

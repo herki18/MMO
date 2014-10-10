@@ -27,7 +27,7 @@ namespace MMO.Web.Controllers.Api.V1
                 new Uri(Request.RequestUri, Url.Route("Download", new { id = launcher.Id })).AbsoluteUri);
         }
 
-        [Route("upload"), System.Web.Mvc.HttpPost, AuthorizeDeployToken]
+        [Route("upload"), HttpPost, AuthorizeDeployToken]
         public async Task<IHttpActionResult> UploadLauncher() {
             if (!Request.Content.IsMimeMultipartContent())
             {
