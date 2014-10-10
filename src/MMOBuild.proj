@@ -8,19 +8,16 @@
   
   <PropertyGroup Condition="'$(Env)' == 'dev'">
     <BuildConfig>Debug</BuildConfig>
-    <Domain>mmo.com</Domain>
     <SetParamsFile>Parameters.Local.config</SetParamsFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Env)' == 'prod'">
     <BuildConfig>Release</BuildConfig>
-    <Domain>mmo.com</Domain>
     <SetParamsFile>Parameters.Production.config</SetParamsFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Env)' == 'sta'">
     <BuildConfig>Release</BuildConfig>
-    <Domain>mmo.com</Domain>
     <SetParamsFile>Parameters.Staging.config</SetParamsFile>
   </PropertyGroup>
 

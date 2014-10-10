@@ -345,6 +345,8 @@
     <Content Include="Views\PasswordReset\Confirm.cshtml" />
     <Content Include="Views\PasswordReset\Reset.cshtml" />
     <Content Include="Config\Parameters.Local.config" />
+    <Content Include="Config\Parameters.Production.config" />
+    <Content Include="Config\Parameters.Staging.config" />
     <None Include="Properties\PublishProfiles\MMO.pubxml" />
     <None Include="Properties\PublishProfiles\MMOServer.pubxml" />
     <None Include="Web.Debug.config">

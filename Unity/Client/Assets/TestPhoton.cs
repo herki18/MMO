@@ -11,6 +11,7 @@ public class TestPhoton : MonoBehaviour, IPhotonPeerListener {
         _regionServers = new List<PhotonPeer>();
         _peer = new PhotonPeer(this, ConnectionProtocol.Udp);
         _peer.Connect("168.63.57.205:5055", "MMOMaster");
+        Debug.Log("Connected Photon");
     }
 
     public void Update() {
@@ -42,8 +43,11 @@ public class TestPhoton : MonoBehaviour, IPhotonPeerListener {
     }
 
     public void OnEvent(EventData eventData) {
+        Debug.Log(eventData.Parameters[0].ToString());
         var regionServers = eventData.Parameters[0].ToString().Split(',');
-        foreach (var server in regionServers) {
+        Debug.Log(regionServers);
+        foreach (var server in regionServers)
+        {
             var regionServer = new PhotonPeer(this, ConnectionProtocol.Udp);
             regionServer.Connect(server, "MMORegion");
             _regionServers.Add(regionServer);
