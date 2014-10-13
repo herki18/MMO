@@ -56,13 +56,13 @@
   </Target>
 
   <Target Name="DeployLauncher" DependsOnTargets="BuildSolution">
-    <CreateItem Include="$(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Launcher.exe;
-                $(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Launcher.exe.config;
-                $(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Base.dll;" >
+    <CreateItem Include="$(MSBuildThisFileDirectory)\MMO.Launcher\bin\$(BuildConfig)\*.exe;
+                $(MSBuildThisFileDirectory)\MMO.Launcher\bin\$(BuildConfig)\*.config;
+                $(MSBuildThisFileDirectory)\MMO.Launcher\bin\$(BuildConfig)\*.dll;" >
       <Output TaskParameter="Include" ItemName="LauncherZipFiles" />
     </CreateItem>
     <!--zip launcher-->
-    <Zip ZipFileName="../Build/Launcher/Launcher.zip" Files="@(LauncherZipFiles)" Flatten="true"></Zip>
+    <Zip ZipFileName="$(MSBuildThisFileDirectory)..\Build\Launcher\Launcher.zip" Files="@(LauncherZipFiles)" Flatten="true"></Zip>
     <!--upload launcher-->
     <UploadFile Type="Launcher" 
                 Env="$(Env)" 

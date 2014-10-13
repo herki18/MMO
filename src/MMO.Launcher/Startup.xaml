@@ -14,6 +14,6 @@
             <RowDefinition Height="16*" />
         </Grid.RowDefinitions>
         <Label x:Name="StatusLabel" Content="Checking for newer version..." Grid.Row="1" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-        <ProgressBar x:Name="UpdateProgress" Grid.Row="2" BorderThickness="1 0 1 0"/>
+        <ProgressBar x:Name="UpdateProgress" Grid.Row="2" BorderThickness="1 0 1 0" Maximum="100" Minimum="0"/>
     </Grid>
 </Window>
