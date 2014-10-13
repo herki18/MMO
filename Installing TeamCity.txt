@@ -5,4 +5,4 @@ Guide:
 2. Download Teamcity
 3. Configure teamcity using TeamCity user
 4. Create TeamCity user admin and password admin
-5. test
+5. tests
