@@ -13,7 +13,7 @@
   
   <PropertyGroup Condition="'$(Env)' == 'prod'">
     <BuildConfig>Release</BuildConfig>
-    <SetParamsFile>Parameters.Production.config</SetParamsFile>
+    <SetParamsFile>Parameters.Production</SetParamsFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Env)' == 'sta'">
