@@ -1,7 +1,7 @@
 ﻿<Application x:Class="MMO.Launcher.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Startup.xaml">
     <Application.Resources>
          
     </Application.Resources>

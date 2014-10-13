@@ -14,7 +14,7 @@ namespace MMO.Web.Controllers.Api.V1
     public class LauncherController : ApiController
     {
         private readonly MMODatabseContext _database = new MMODatabseContext();
-        [System.Web.Mvc.Route("latest"), System.Web.Mvc.HttpGet]
+        [Route("latest"), HttpGet]
         public object GetLatestLauncher() {
             var launcher = _database.Launchers.OrderByDescending(f => f.Version.Version).ThenByDescending(f => f.Version.Timestamp).FirstOrDefault();
             if (launcher == null)
