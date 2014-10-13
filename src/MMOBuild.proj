@@ -13,7 +13,7 @@
   
   <PropertyGroup Condition="'$(Env)' == 'prod'">
     <BuildConfig>Release</BuildConfig>
-    <SetParamsFile>Parameters.Production</SetParamsFile>
+    <SetParamsFile>Parameters.Production.config</SetParamsFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Env)' == 'sta'">
@@ -52,7 +52,7 @@
     <!--build deploy package-->
     <MSBuild Projects="MMO.Web/MMO.Web.csproj" Targets="Package" Properties="Configuration=$(BuildConfig);PackageLocation=..\..\Build\Web\Package.zip" />
     <!--execute web deploy-->
-    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)..\" Command='lib\msdeploy\msdeploy.exe -verb:sync -source:package="Build\Web\Package.zip" -dest:auto,computerName=$(WebDeployComputer),userName=$(WebDeployUser),password=$(WebDeployPassword) -skip:directory=\\Uploads$ -setParamFile="$(MSBuildThisFileDirectory)MMO.Web\Config\$(SetParamsFile)" ' />
+    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)..\" Command='lib\msdeploy\msdeploy.exe -verb:sync -source:package="Build\Web\Package.zip" -dest:auto,computerName=$(WebDeployComputer),userName=$(WebDeployUser),password=$(WebDeployPassword) -skip:directory=\\Uploads$ -declareParamFile="$(MSBuildThisFileDirectory)MMO.Web\Config\$(SetParamsFile)" ' />
   </Target>
 
   <Target Name="DeployLauncher" DependsOnTargets="BuildSolution">
