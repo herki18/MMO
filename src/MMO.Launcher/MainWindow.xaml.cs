@@ -17,8 +17,9 @@ namespace MMO.Launcher
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel.CanLogin = true;
+            
             DataContext = _viewModel = new MainWindowViewModel();
+            _viewModel.CanLogin = true;
         }
 
         private async void Login(object sender, RoutedEventArgs e) {
