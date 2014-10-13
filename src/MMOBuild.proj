@@ -52,7 +52,8 @@
     <!--build deploy package-->
     <MSBuild Projects="MMO.Web/MMO.Web.csproj" Targets="Package" Properties="Configuration=$(BuildConfig);PackageLocation=..\..\Build\Web\Package.zip" />
     <!--execute web deploy-->
-   </Target>
+    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)..\" Command='lib\msdeploy\msdeploy.exe -verb:sync -source:package="Build\Web\Package.zip" -dest:auto,computerName=$(WebDeployComputer),userName=$(WebDeployUser),password=$(WebDeployPassword) -skip:directory=\\Uploads$ -setParamFile="$(MSBuildThisFileDirectory)MMO.Web\Config\$(SetParamsFile)" ' />
+  </Target>
 
   <Target Name="DeployLauncher" DependsOnTargets="BuildSolution">
     <CreateItem Include="$(MSBuildThisFileDirectory)/MMO.Launcher/bin/$(BuildConfig)/MMO.Launcher.exe;
