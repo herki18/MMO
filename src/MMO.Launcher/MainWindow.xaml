@@ -1,8 +1,28 @@
 ﻿<Window x:Class="MMO.Launcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label Content="Hello world"/>
+        Title="MainWindow" 
+        Height="175" 
+        Width="350"
+        ResizeMode="NoResize">
+    <Grid Margin="10 10 10 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ProgressBar Grid.ColumnSpan="2" Maximum="100" Minimum="0" Value="{Binding Precent}"/>
+        <Label Grid.ColumnSpan="2" Content="{Binding Status}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0" />
+        <Label Content="Username" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox IsEnabled="{Binding CanLogin}" Grid.Row="1" Grid.Column="1" Margin="5 5 0 5" Text="{Binding Username}"/>
+        <Label Content="Password" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <PasswordBox IsEnabled="{Binding CanLogin}" Grid.Row="2" Grid.Column="1" Margin="5 5 0 5" x:Name="Password" />
+
+        <Button Click="Login" IsEnabled="{Binding CanLogin}" IsDefault="True" Grid.Row="3" Grid.Column="1"  Content="Login" Padding="10 0" Margin="5,5,160,5" HorizontalContentAlignment="Left"/>
     </Grid>
 </Window>
