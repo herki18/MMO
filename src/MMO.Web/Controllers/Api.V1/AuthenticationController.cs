@@ -14,7 +14,7 @@ namespace MMO.Web.Controllers.Api.V1
     [RoutePrefix("api/v1/authentication")]
     public class AuthenticationController : ApiController
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LauncherController));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(AuthenticationController));
         private readonly MMODatabseContext _database = new MMODatabseContext();
 
         [Route("validate"), HttpPost]

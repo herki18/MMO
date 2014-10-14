@@ -14,7 +14,7 @@ namespace MMO.Web.Controllers.Api.V1
     [RoutePrefix("api/v1/clients")]
     public class ClientController : ApiController
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LauncherController));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ClientController));
 
         private readonly MMODatabseContext _database = new MMODatabseContext();
         [Route("latest"), HttpGet]
