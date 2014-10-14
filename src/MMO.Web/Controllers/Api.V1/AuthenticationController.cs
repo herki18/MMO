@@ -30,7 +30,7 @@ namespace MMO.Web.Controllers.Api.V1
                 var settingService = new MMOSettingService(_database);
                 Log.Debug("Setting service was correct");
                 var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
-                Log.Debug("Got user data from database");
+                Log.Debug(user != null ? "Got user data from database" : "User is null");
                 if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForUser(user))
                 {
                     return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthValidateResponse(false));
