@@ -8,7 +8,7 @@ using log4net;
 using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Services;
-
+using System.Data.Entity;
 
 namespace MMO.Web.Controllers.Api.V1
 {
@@ -29,7 +29,7 @@ namespace MMO.Web.Controllers.Api.V1
                 Log.Debug("Request was correct");
                 var settingService = new MMOSettingService(_database);
                 Log.Debug("Setting service was correct");
-                var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
+                var user = _database.Users.Include(t => t.Roles).SingleOrDefault(t => t.UserName == request.Username);
                 Log.Debug(user != null ? "Got user data from database" : "User is null");
                 if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForUser(user))
                 {
@@ -51,7 +51,7 @@ namespace MMO.Web.Controllers.Api.V1
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthGenerateTokenResponse(false, null));
             }
             var settingService = new MMOSettingService(_database);
-            var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
+            var user = _database.Users.Include(t => t.Roles).SingleOrDefault(t => t.UserName == request.Username);
             if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForUser(user))
             {
                 return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthGenerateTokenResponse(false, null));
