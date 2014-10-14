@@ -39,7 +39,7 @@ namespace MMO.Web.Controllers.Api.V1
                 
             }
             catch (Exception e) {     
-                Log.DebugFormat("Exception was throwen {0}", e.Message);
+                Log.DebugFormat("Exception was throwen {0}, Stack {1}", e.Message, e.StackTrace);
             }
             return Request.CreateResponse(new AuthValidateResponse(true));
         }
