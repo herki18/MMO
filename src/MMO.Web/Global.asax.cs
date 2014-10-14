@@ -13,7 +13,7 @@ namespace MMO.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start() {
-
+            log4net.Config.XmlConfigurator.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AreaRegistration.RegisterAllAreas();

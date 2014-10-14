@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using log4net;
 using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Entities;
@@ -13,9 +14,12 @@ namespace MMO.Web.Controllers.Api.V1
     [RoutePrefix("api/v1/clients")]
     public class ClientController : ApiController
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(LauncherController));
+
         private readonly MMODatabseContext _database = new MMODatabseContext();
         [Route("latest"), HttpGet]
         public object GetLatestClient() {
+            Log.Debug("GetLatestClient");
             var client = _database.Clients.OrderByDescending(f => f.Version.Version).ThenByDescending(f => f.Version.Timestamp).FirstOrDefault();
             if (client == null) {
                 return NotFound();

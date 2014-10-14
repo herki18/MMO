@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using log4net;
 using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Services;
@@ -13,10 +14,12 @@ namespace MMO.Web.Controllers.Api.V1
     [RoutePrefix("api/v1/authentication")]
     public class AuthenticationController : ApiController
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(LauncherController));
         private readonly MMODatabseContext _database = new MMODatabseContext();
 
         [Route("validate"), HttpPost]
         public HttpResponseMessage ValidateCredentials([FromBody]AuthValidateRequest request) {
+            Log.Debug("Validate");
             if (request == null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password)) {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthValidateResponse(false));
             }
