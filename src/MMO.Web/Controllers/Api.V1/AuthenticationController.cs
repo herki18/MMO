@@ -46,7 +46,7 @@ namespace MMO.Web.Controllers.Api.V1
         }
 
         [Route("login"), HttpPost]
-        public HttpResponseMessage GenerateToken([FromBody]AuthGenerateTokenRequest request) {,
+        public HttpResponseMessage GenerateToken([FromBody]AuthGenerateTokenRequest request) {
             try {
                 if (request == null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password)) {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthGenerateTokenResponse(false, null));
