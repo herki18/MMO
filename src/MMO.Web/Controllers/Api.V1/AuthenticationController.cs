@@ -23,7 +23,9 @@ namespace MMO.Web.Controllers.Api.V1
             if (request == null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password)) {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthValidateResponse(false));
             }
+            Log.Debug("Request was correct"); 
             var settingService = new MMOSettingService(_database);
+            Log.Debug("Setting service was correct");
             var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
             if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForuser(user)) {
                 return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthValidateResponse(false));
