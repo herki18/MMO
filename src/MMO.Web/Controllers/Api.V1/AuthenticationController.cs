@@ -36,11 +36,12 @@ namespace MMO.Web.Controllers.Api.V1
                     return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthValidateResponse(false));
                 }
                 Log.Debug("User check was correct");
-                return Request.CreateResponse(new AuthValidateResponse(true));
+                
             }
             catch (Exception e) {     
                 Log.DebugFormat("Exception was throwen {0}", e.Message);
             }
+            return Request.CreateResponse(new AuthValidateResponse(true));
         }
 
         [Route("login"), HttpPost]
