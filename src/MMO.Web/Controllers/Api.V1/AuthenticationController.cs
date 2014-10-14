@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -20,18 +21,26 @@ namespace MMO.Web.Controllers.Api.V1
         [Route("validate"), HttpPost]
         public HttpResponseMessage ValidateCredentials([FromBody]AuthValidateRequest request) {
             Log.Debug("Validate");
-            if (request == null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password)) {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthValidateResponse(false));
+            try {
+                if (request == null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, new AuthValidateResponse(false));
+                }
+                Log.Debug("Request was correct");
+                var settingService = new MMOSettingService(_database);
+                Log.Debug("Setting service was correct");
+                var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
+                Log.Debug("Got user data from database");
+                if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForUser(user))
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthValidateResponse(false));
+                }
+                Log.Debug("User check was correct");
+                return Request.CreateResponse(new AuthValidateResponse(true));
             }
-            Log.Debug("Request was correct"); 
-            var settingService = new MMOSettingService(_database);
-            Log.Debug("Setting service was correct");
-            var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
-            if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForuser(user)) {
-                return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthValidateResponse(false));
+            catch (Exception e) {     
+                Log.DebugFormat("Exception was throwen {0}", e.Message);
             }
-
-            return Request.CreateResponse(new AuthValidateResponse(true));
         }
 
         [Route("login"), HttpPost]
@@ -42,7 +51,7 @@ namespace MMO.Web.Controllers.Api.V1
             }
             var settingService = new MMOSettingService(_database);
             var user = _database.Users.SingleOrDefault(t => t.UserName == request.Username);
-            if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForuser(user))
+            if (user == null || !user.CheckPassword(request.Password) || !settingService.IsGameEnabledForUser(user))
             {
                 return Request.CreateResponse(HttpStatusCode.Unauthorized, new AuthGenerateTokenResponse(false, null));
             }

@@ -4,11 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 using MMO.Data.Entities;
 
 namespace MMO.Data.Services
 {
     public class MMOSettingService {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MMOSettingService));
         private const string EnabledGameRolesKey = "Enabled Game Roles";
         private readonly MMODatabseContext _database;
         private readonly Dictionary<string, MMOSetting> _settingEntities; 
@@ -21,9 +23,10 @@ namespace MMO.Data.Services
             _database = database;
             _settingEntities = new Dictionary<string, MMOSetting>();
             LoadAllSettings();
+            Log.DebugFormat("Game role count {0}", _gameRoles.Count);
         }
 
-        public bool IsGameEnabledForuser(User user) {
+        public bool IsGameEnabledForUser(User user) {
             return _gameRoles.Overlaps(user.Roles);
         }
 
