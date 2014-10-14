@@ -111,7 +111,7 @@ namespace MMO.Launcher
                 return;
             }
 
-            Process.Start(Path.Combine("Client", "MMO.ece"), string.Format("-token={0}", authResponse.Token));
+            Process.Start(Path.Combine("Client", "MMO.exe"), string.Format("-token={0}", authResponse.Token));
             Close();
         }
 
