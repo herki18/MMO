@@ -49,6 +49,7 @@
     <Compile Include="Infrastructure\BuildNumberAttribute.cs" />
     <Compile Include="Infrastructure\ComponentMap.cs" />
     <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\IRpcResponse.cs" />
     <Compile Include="Infrastructure\MappedComponent.cs" />
     <Compile Include="Infrastructure\MappedMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

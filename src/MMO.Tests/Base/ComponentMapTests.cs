@@ -8,6 +8,7 @@ using FluentAssertions;
 namespace MMO.Tests.Base {
     [TestFixture]
     public class ComponentMapTests {
+        class TestAutoMapAssemblyAttribute : Attribute { }
 
         interface ITestComponent {   
         }
@@ -21,6 +22,23 @@ namespace MMO.Tests.Base {
             void VoidMethodNoParams();
             void VoidMethodOneParam(string param1);
             void VoidMethodTwoParams(bool param1, int param2);
+        }
+
+        [TestAutoMapAssembly]
+        interface ITestComponent4 {
+            void VoidMethodNoParams();
+            void VoidMethodOneParam(string param1);
+            void VoidMethodTwoParams(bool param1, int param2);
+        }
+
+        [TestAutoMapAssembly]
+        interface ITestComponent5
+        {
+        }
+
+        [TestAutoMapAssembly]
+        interface ITestComponent6
+        {
         }
 
         public class TestComponent3 : ITestComponent3 {
@@ -174,6 +192,116 @@ namespace MMO.Tests.Base {
             var mappedMethod = component.MapMethod(typeof (ITestComponent2).GetMethod("Method"), 5);
 
             componentMap.Methods[3][5].Should().BeSameAs(mappedMethod);
+        }
+
+        [Test]
+        public void CanInvokeVoidMethodOnComponent() {
+            var map = CreateTestComponent3ComponentMap();
+            var componenObject = new TestComponent3();
+
+            map.Methods[0][0].Invoke(componenObject, null);
+
+            componenObject.VoidMethodNoParamsCallCount.Should().Be(1);
+        }
+
+        [Test]
+        public void CanInvokeVoidMethodMultipleTimesOnComponent() {
+            const int targetInvokeCount = 30;
+
+            var map = CreateTestComponent3ComponentMap();
+            var componenObject = new TestComponent3();
+
+            for (int i = 0; i < targetInvokeCount; i++) {
+                map.Methods[0][0].Invoke(componenObject, null);
+            }
+            
+
+            componenObject.VoidMethodNoParamsCallCount.Should().Be(targetInvokeCount);
+        }
+
+        [Test]
+        public void CanInvokeVoidMethodOneParamOnComponent() {
+            const string param1 = "Hello World!";
+
+            var map = CreateTestComponent3ComponentMap();
+            var componentObject = new TestComponent3();
+
+            map.Methods[0][1].Invoke(componentObject, new object[] {param1});
+
+            componentObject.VoidMethodOneParamCallCount.Should().Be(1);
+            componentObject.VoidMethodOneParamParam1.Should().Be(param1);
+        }
+
+        [Test]
+        public void CanInvokeVoidMethodTwoParamsOnComponent() {
+            const bool param1 = true;
+            const int param2 = 32789;
+
+            var map = CreateTestComponent3ComponentMap();
+            var componentObject = new TestComponent3();
+
+            map.Methods[0][2].Invoke(componentObject, new object[] { param1, param2 });
+
+            componentObject.VoidMethodTwoParamsCallCount.Should().Be(1);
+            componentObject.VoidMethodTwoParamsParam1.Should().Be(param1);
+            componentObject.VoidMethodTwoParamsParam2.Should().Be(param2);
+        }
+
+        [Test]
+        public void ReservedComponentIdLimitPreventsComponentsFromBeingMapped() {
+            var map = new ComponentMap(3);
+
+            Action action1 = () => map.MapComponent(typeof (ITestComponent), 0);
+            Action action2 = () => map.MapComponent(typeof (ITestComponent), 1);
+            Action action3 = () => map.MapComponent(typeof (ITestComponent), 2);
+
+            action1.ShouldThrow<ArgumentException>();
+            action2.ShouldThrow<ArgumentException>();
+            action3.ShouldThrow<ArgumentException>();
+
+            map.MapComponent(typeof (ITestComponent), 3);
+        }
+
+        [Test]
+        public void CanAutoMapComponent() {
+            var map = new ComponentMap();
+
+            map.AutoMapComponent(typeof (ITestComponent4));
+            map.Components[0].Type.Should().Be(typeof (ITestComponent4));
+            map.Components[0].Methods[0].MethodInfo.Name.Should().Be("VoidMethodNoParams");
+            map.Components[0].Methods[1].MethodInfo.Name.Should().Be("VoidMethodOneParam");
+            map.Components[0].Methods[2].MethodInfo.Name.Should().Be("VoidMethodTwoParams");
+
+        }
+
+        [Test]
+        public void AutoMappingComponentRespectsReservedIds() {
+            var map = new ComponentMap(3);
+            map.AutoMapComponent(typeof (ITestComponent4));
+
+            map.Components[0].Should().Be(null);
+            map.Components[1].Should().Be(null);
+            map.Components[2].Should().Be(null);
+
+            map.Components[3].Type.Should().Be(typeof(ITestComponent4));
+            map.Components[3].Methods[0].MethodInfo.Name.Should().Be("VoidMethodNoParams");
+            map.Components[3].Methods[1].MethodInfo.Name.Should().Be("VoidMethodOneParam");
+            map.Components[3].Methods[2].MethodInfo.Name.Should().Be("VoidMethodTwoParams");
+
+        }
+
+        [Test]
+        public void AutoMappingAssemblyAutoMapAssembly() {
+            var map = new ComponentMap();
+
+            map.AutoMapAssembly(typeof (ComponentMapTests).Assembly, typeof(TestAutoMapAssemblyAttribute));
+
+            map.GetComponent(typeof (ITestComponent4)).Should().NotBeNull();
+            map.GetComponent(typeof (ITestComponent5)).Should().NotBeNull();
+            map.GetComponent(typeof (ITestComponent6)).Should().NotBeNull();
+
+            Action fail = () => map.GetComponent(typeof (ITestComponent));
+            fail.ShouldThrow<Exception>();
         }
 
         private ComponentMap CreateTestComponent3ComponentMap() {

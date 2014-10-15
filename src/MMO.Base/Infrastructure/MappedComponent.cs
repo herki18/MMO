@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace MMO.Base.Infrastructure {
     public class MappedComponent {
-        public readonly Dictionary<MethodInfo, MappedMethod> _methodInfoMethods; 
+        private readonly Dictionary<MethodInfo, MappedMethod> _methodInfoMethods;
+        private byte _nextAutoMapMethodId;
 
         public Type Type { get; private set; }
         public byte Id { get; private set; }
@@ -15,6 +17,14 @@ namespace MMO.Base.Infrastructure {
             Id = id;
             Methods = new MappedMethod[byte.MaxValue+1];
             _methodInfoMethods = new Dictionary<MethodInfo, MappedMethod>();
+            _nextAutoMapMethodId = 0;
+        }
+
+        public void AutoMapMethods() {
+            foreach (var method in Type.GetMethods(BindingFlags.Instance | BindingFlags.Public)) {
+                MapMethod(method, _nextAutoMapMethodId);
+                _nextAutoMapMethodId++;
+            }
         }
 
         public MappedMethod MapMethod(MethodInfo methodInfo, byte id) {
