@@ -12,6 +12,8 @@ namespace MMO.Base.Infrastructure {
         public byte ReservedComponentIdLimit { get; private set; }
         public MappedComponent[] Components { get; private set; }
         public MappedMethod[][] Methods { get; private set; }
+        public IEnumerable<MappedComponent> AllComponents { get { return _typesToComponents.Values; } }
+        public int ComponentCount { get { return _typesToComponents.Count; } }
 
         public ComponentMap() : this(0) {}
 

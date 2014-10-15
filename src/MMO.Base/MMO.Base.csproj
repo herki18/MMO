@@ -48,10 +48,14 @@
     <Compile Include="Infrastructure\BuildNumber.cs" />
     <Compile Include="Infrastructure\BuildNumberAttribute.cs" />
     <Compile Include="Infrastructure\ComponentMap.cs" />
+    <Compile Include="Infrastructure\ComponentMapBinaryFormatter.cs" />
+    <Compile Include="Infrastructure\Extensions\ReflectionExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\IRpcResponse`1.cs" />
     <Compile Include="Infrastructure\IRpcResponse.cs" />
     <Compile Include="Infrastructure\MappedComponent.cs" />
     <Compile Include="Infrastructure\MappedMethod.cs" />
+    <Compile Include="Infrastructure\MappedMethodReturnType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Time.cs" />
   </ItemGroup>

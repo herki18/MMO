@@ -8,6 +8,8 @@ namespace MMO.Base.Infrastructure {
         public MappedComponent Component { get; private set; }
         public MethodInfo MethodInfo { get; private set; }
         public byte Id { get; private set; }
+        public MappedMethodReturnType ReturnType { get; private set; }
+        public Type ResultType { get; private set; }
 
         public Func<object, object[], IRpcResponse> Invoke { get; private set; } 
 
@@ -15,6 +17,20 @@ namespace MMO.Base.Infrastructure {
             Component = component;
             MethodInfo = methodInfo;
             Id = id;
+
+            if (methodInfo.ReturnType == typeof (void)) {
+                ReturnType = MappedMethodReturnType.Void;
+            }
+            else if (methodInfo.ReturnType == typeof (IRpcResponse)) {
+                ReturnType = MappedMethodReturnType.Response;
+            }
+            else if(methodInfo.ReturnType.IsGenericType && methodInfo.ReturnType.GetGenericTypeDefinition() == typeof(IRpcResponse<>)){
+                ReturnType = MappedMethodReturnType.ResponseWithResult;
+                ResultType = methodInfo.ReturnType.GetGenericArguments()[0];
+            }
+            else {
+                throw new ArgumentException("method must return void, IRpcResponse or IRpcResponse<>", "methodInfo");
+            }
 
             Invoke = CompileMethodInvoker(component.Type, methodInfo);
         }

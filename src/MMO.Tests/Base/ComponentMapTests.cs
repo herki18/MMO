@@ -41,6 +41,34 @@ namespace MMO.Tests.Base {
         {
         }
 
+        interface ITestComponent7 {
+            void NoResponse();
+            IRpcResponse ResponseNoResult();
+            IRpcResponse<int> ResponseWithResult();
+        }
+
+        class TestRpcResponse : IRpcResponse {
+             
+        }
+
+        class TestRpcResponse<T> : IRpcResponse<T>
+        { }
+
+        class TestComponent7 : ITestComponent7 {
+            public IRpcResponse Response1 { get; set; }
+            public IRpcResponse<int> Response2 { get; set; }
+
+            public void NoResponse() { }
+
+            public IRpcResponse ResponseNoResult() {
+                return Response1;
+            }
+
+            public IRpcResponse<int> ResponseWithResult() {
+                return Response2;
+            }
+        }
+
         public class TestComponent3 : ITestComponent3 {
             public int VoidMethodNoParamsCallCount { get; private set; }
             public int VoidMethodOneParamCallCount { get; private set; }
@@ -248,6 +276,39 @@ namespace MMO.Tests.Base {
         }
 
         [Test]
+        public void ReturnValuesDoGetPassedBackFromMappedMethod() {
+            var map = new ComponentMap();
+            var component = map.MapComponent(typeof (ITestComponent7), 0);
+            component.MapMethod(typeof (ITestComponent7).GetMethod("ResponseNoResult"), 0);
+
+            var obj = new TestComponent7 {
+                Response1 = new TestRpcResponse(), 
+                Response2 = new TestRpcResponse<int>()
+            };
+
+            var result = map.Methods[0][0].Invoke(obj, new object[0]);
+
+            result.Should().BeSameAs(obj.Response1);
+        }
+
+        [Test]
+        public void ReturnValueWithResultDoGetPassedBackFromMappedMethod()
+        {
+            var map = new ComponentMap();
+            var component = map.MapComponent(typeof(ITestComponent7), 0);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("ResponseWithResult"), 0);
+
+            var obj = new TestComponent7 {
+                Response1 = new TestRpcResponse(), 
+                Response2 = new TestRpcResponse<int>()
+            };
+
+            var result = map.Methods[0][0].Invoke(obj, new object[0]);
+
+            result.Should().BeSameAs(obj.Response2);
+        }
+
+        [Test]
         public void ReservedComponentIdLimitPreventsComponentsFromBeingMapped() {
             var map = new ComponentMap(3);
 
@@ -288,6 +349,44 @@ namespace MMO.Tests.Base {
             map.Components[3].Methods[1].MethodInfo.Name.Should().Be("VoidMethodOneParam");
             map.Components[3].Methods[2].MethodInfo.Name.Should().Be("VoidMethodTwoParams");
 
+        }
+
+        [Test]
+        public void MappedMethodIdentifiesVoidReturnType() {
+            var map = new ComponentMap();
+            var component = map.MapComponent(typeof (ITestComponent7), 0);
+            component.MapMethod(typeof (ITestComponent7).GetMethod("NoResponse"), 0);
+            component.MapMethod(typeof (ITestComponent7).GetMethod("ResponseNoResult"), 1);
+            component.MapMethod(typeof (ITestComponent7).GetMethod("ResponseWithResult"), 2);
+
+            map.Methods[0][0].ReturnType.Should().Be(MappedMethodReturnType.Void);
+            map.Methods[0][0].ResultType.Should().BeNull();
+        }
+
+        [Test]
+        public void MappedMethodIdentifiesIRpcResponseReturnType()
+        {
+            var map = new ComponentMap();
+            var component = map.MapComponent(typeof(ITestComponent7), 0);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("NoResponse"), 0);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("ResponseNoResult"), 1);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("ResponseWithResult"), 2);
+
+            map.Methods[0][1].ReturnType.Should().Be(MappedMethodReturnType.Response);
+            map.Methods[0][1].ResultType.Should().BeNull();
+        }
+
+        [Test]
+        public void MappedMethodIdentifiesIRpcResponseWithResultReturnType()
+        {
+            var map = new ComponentMap();
+            var component = map.MapComponent(typeof(ITestComponent7), 0);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("NoResponse"), 0);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("ResponseNoResult"), 1);
+            component.MapMethod(typeof(ITestComponent7).GetMethod("ResponseWithResult"), 2);
+
+            map.Methods[0][2].ReturnType.Should().Be(MappedMethodReturnType.ResponseWithResult);
+            map.Methods[0][2].ResultType.Should().Be(typeof(int));
         }
 
         [Test]

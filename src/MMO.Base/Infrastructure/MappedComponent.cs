@@ -12,6 +12,9 @@ namespace MMO.Base.Infrastructure {
         public byte Id { get; private set; }
         public MappedMethod[] Methods { get; set; }
 
+        public int MethodCount {  get { return _methodInfoMethods.Count; }}
+        public IEnumerable<MappedMethod> AllMethods { get { return _methodInfoMethods.Values; } } 
+
         public MappedComponent(Type type, byte id) {
             Type = type;
             Id = id;
