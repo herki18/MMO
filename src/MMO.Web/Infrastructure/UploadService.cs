@@ -7,7 +7,8 @@ using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Results;
 using MMO.Base;
-using MMO.Base.Extensions;
+using MMO.Base.Infrastructure;
+using MMO.Base.Infrastructure.Extensions;
 using MMO.Data;
 using MMO.Data.Entities;
 

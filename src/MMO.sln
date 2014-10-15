@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{40340CF3-0B1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CJR", "CJR", "{17BE7B8E-A497-4ACF-8970-B359C1C78436}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMO.Tests", "MMO.Tests\MMO.Tests.csproj", "{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,12 @@ Global
 		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Debug-Herki|Any CPU.Build.0 = Debug|Any CPU
 		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEF363FA-C748-43DE-8B5A-9D6EDD1F805F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Debug-Herki|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Debug-Herki|Any CPU.Build.0 = Debug|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F167A8-B427-47E3-9F52-81AA6A7DD4BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

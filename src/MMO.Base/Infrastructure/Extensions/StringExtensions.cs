@@ -1,4 +1,4 @@
-﻿namespace MMO.Base.Extensions
+﻿namespace MMO.Base.Infrastructure.Extensions
 {
     public static class StringExtensions
     {

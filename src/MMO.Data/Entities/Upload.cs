@@ -1,5 +1,6 @@
 ﻿using System;
 using MMO.Base;
+using MMO.Base.Infrastructure;
 
 namespace MMO.Data.Entities
 {

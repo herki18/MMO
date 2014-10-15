@@ -11,6 +11,7 @@ using System.Windows;
 using Ionic.Zip;
 using MMO.Base;
 using MMO.Base.Api.V1;
+using MMO.Base.Infrastructure;
 using Newtonsoft.Json;
 
 namespace MMO.Launcher

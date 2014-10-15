@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace MMO.Base
+namespace MMO.Base.Infrastructure
 {
     public class BuildNumber : IEquatable<BuildNumber> {
         public short Version { get; private set; }

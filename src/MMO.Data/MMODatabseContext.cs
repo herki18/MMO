@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMO.Base;
+using MMO.Base.Infrastructure;
 using MMO.Data.Entities;
 using MMO.Data.Migrations;
 

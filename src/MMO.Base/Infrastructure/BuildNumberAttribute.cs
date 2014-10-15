@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MMO.Base
+namespace MMO.Base.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Assembly)]
     public class BuildNumberAttribute : Attribute

@@ -3,6 +3,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using MMO.Base;
+using MMO.Base.Infrastructure;
 
 namespace MMO.Build.Tasks
 {

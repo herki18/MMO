@@ -12,7 +12,7 @@ namespace MMO.Build.Tasks
 
         public override bool Execute() {
             var isDebug = Env == "dev" ? "true" : "false";
-            var fileContents = string.Format("[assembly: MMO.Base.BuildNumber({0}, {1}, {2})]", VersionNumber, Timestamp, isDebug);
+            var fileContents = string.Format("[assembly: MMO.Base.Infrastructure.BuildNumber({0}, {1}, {2})]", VersionNumber, Timestamp, isDebug);
 
             foreach (var file in Files.Split(',')) {
                 File.WriteAllText(file, fileContents);
