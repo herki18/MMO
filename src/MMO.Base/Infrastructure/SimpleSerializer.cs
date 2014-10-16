@@ -25,7 +25,20 @@ namespace MMO.Base.Infrastructure {
         }
 
         public void WriteObject(BinaryWriter writer, Type type, object value) {
-            if (type.IsArray) {
+            if (value == null) {
+                writer.Write(false);
+                return;
+            }
+
+            var isNullableValueType = type.IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>);
+            if (!type.IsValueType || isNullableValueType) {
+                writer.Write(true);
+            }
+
+            if (isNullableValueType) {
+                WriteSimple(writer, type.GetGenericArguments()[0], value);
+            }
+            else if (type.IsArray) {
                 var array = (Array) value;
                 var elementType = type.GetElementType();
 
@@ -35,6 +48,8 @@ namespace MMO.Base.Infrastructure {
                 }
             } else if (type.IsEnum) {
                 WriteSimple(writer, Enum.GetUnderlyingType(type), value);
+            }else if (IsCustomSerializer(type)) {
+                ((ICustomSerializer)value).Save(writer, this);
             }
             else {
                 WriteSimple(writer, type, value);
@@ -42,6 +57,20 @@ namespace MMO.Base.Infrastructure {
         }
 
         public object ReadObject(BinaryReader reader, Type type) {
+            if (!type.IsValueType) {
+                if (reader.ReadBoolean() == false) {
+                    return null;
+                }
+            }
+            else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>)) {
+                if (reader.ReadBoolean() == false) {
+                    return null;
+                }
+
+                return ReadSimple(reader, type.GetGenericArguments()[0]);
+            }
+
+
             if (type.IsArray) {
                 var elementType = type.GetElementType();
                 var length = reader.ReadInt32();
@@ -56,6 +85,12 @@ namespace MMO.Base.Infrastructure {
 
             if (type.IsEnum) {
                 return Enum.ToObject(type,ReadSimple(reader, Enum.GetUnderlyingType(type)));
+            }
+
+            if (IsCustomSerializer(type)) {
+                var value = (ICustomSerializer) Activator.CreateInstance(type);
+                value.Load(reader, this);
+                return value;
             }
 
             return ReadSimple(reader, type);
@@ -161,6 +196,10 @@ namespace MMO.Base.Infrastructure {
             }
 
             throw new ArgumentException(string.Format("Cannot read '{0}'", type.FullName), "value");
+        }
+
+        private static bool IsCustomSerializer(Type type) {
+            return typeof (ICustomSerializer).IsAssignableFrom(type);
         }
     }
 }

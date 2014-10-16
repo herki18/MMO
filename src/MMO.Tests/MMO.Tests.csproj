@@ -51,6 +51,7 @@
     <Compile Include="Base\ComponentMapBinaryFormatterTests.cs" />
     <Compile Include="Base\ComponentMapTests.cs" />
     <Compile Include="Base\SimpleSerializerTests.cs" />
+    <Compile Include="Base\TypeRegistryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
