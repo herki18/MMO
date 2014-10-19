@@ -15,7 +15,6 @@ namespace MMO.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start() {
-            SetUpSerilog();
             log4net.Config.XmlConfigurator.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -24,16 +23,17 @@ namespace MMO.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configuration.EnsureInitialized();
 
-            
+            SetUpSerilog();
         }
 
         public void SetUpSerilog() {
             Log.Logger = new LoggerConfiguration()
-                      .WriteTo.File(@"C:\Loggs")
-                      .CreateLogger();
+                .WriteTo.RollingFile(@"C:\Loggs\", LogEventLevel.Verbose)
+                .WriteTo.Seq("http://herki.cloudapp.net:5341")
+                .CreateLogger();
 
-            //// Standard .NET format string, useful if you're migrating from another logger
-            //Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
+            // Standard .NET format string, useful if you're migrating from another logger
+            Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
  
         }
     }
