@@ -8,12 +8,13 @@ using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Services;
 using System.Data.Entity;
+using Serilog;
 
 namespace MMO.Web.Controllers.Api.V1
 {
     [RoutePrefix("api/v1/authentication")]
     public class AuthenticationController : ApiController {
-        private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<AuthenticationController>(); 
+        //private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<AuthenticationController>(); 
         private readonly MMODatabseContext _database = new MMODatabseContext();
 
         [Route("validate"), HttpPost]

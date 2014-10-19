@@ -7,12 +7,13 @@ using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Entities;
 using MMO.Web.Infrastructure;
+using Serilog;
 
 namespace MMO.Web.Controllers.Api.V1
 {
     [RoutePrefix("api/v1/launchers")]
     public class LauncherController : ApiController {
-        private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<LauncherController>();
+        //private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<LauncherController>();
 
         private readonly MMODatabseContext _database = new MMODatabseContext();
         [Route("latest"), HttpGet]
