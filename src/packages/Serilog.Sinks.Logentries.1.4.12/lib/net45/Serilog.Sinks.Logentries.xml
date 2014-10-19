@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Serilog.Sinks.Logentries</name>
+    </assembly>
+    <members>
+        <member name="T:Serilog.LoggerConfigurationLogentriesExtensions">
+            <summary>
+            Adds the WriteTo.Logentries() extension method to <see cref="T:Serilog.LoggerConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:Serilog.LoggerConfigurationLogentriesExtensions.Logentries(Serilog.Configuration.LoggerSinkConfiguration,System.String,System.Boolean,System.Int32,System.Nullable{System.TimeSpan},Serilog.Events.LogEventLevel,System.String,System.IFormatProvider)">
+            <summary>
+            Adds a sink that writes log events to the Logentries.com webservice. 
+            Create a token TCP input for this on the logentries website. 
+            </summary>
+            <param name="loggerConfiguration">The logger configuration.</param>
+            <param name="token">The token as found on the Logentries.com website.</param>
+            <param name="restrictedToMinimumLevel">The minimum log event level required in order to write an event to the sink.</param>
+            <param name="outputTemplate">A message template describing the format used to write to the sink.
+            the default is "{Timestamp:G} [{Level}] {Message}{NewLine}{Exception}".</param>
+            <param name="formatProvider">Supplies culture-specific formatting information, or null.</param>
+            <param name="useSsl">Specify if the connection needs to be secured.</param>
+            <param name="batchPostingLimit">The maximum number of events to post in a single batch.</param>
+            <param name="period">The time to wait between checking for event batches.</param>
+            <returns>Logger configuration, allowing configuration to continue.</returns>
+            <exception cref="T:System.ArgumentNullException">A required parameter is null.</exception>
+        </member>
+        <member name="T:Serilog.Sinks.Logentries.LogentriesSink">
+            <summary>
+            Writes log events to the Logentries.com service.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Logentries.LogentriesSink.DefaultBatchPostingLimit">
+            <summary>
+            A reasonable default for the number of events posted in
+            each batch.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Logentries.LogentriesSink.UTF8">
+            <summary>
+            UTF-8 output character set.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Logentries.LogentriesSink.DefaultPeriod">
+            <summary>
+            A reasonable default time to wait between checking for event batches.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Logentries.LogentriesSink.#ctor(System.String,System.IFormatProvider,System.String,System.Boolean,System.Int32,System.TimeSpan)">
+            <summary>
+            Construct a sink that saves logs to the specified storage account. Properties are being send as data and the level is used as tag.
+            </summary>
+            <param name="batchPostingLimit">The maximum number of events to post in a single batch.</param>
+            <param name="period">The time to wait between checking for event batches.</param>
+            <param name="outputTemplate">A message template describing the format used to write to the sink.</param>
+            <param name="formatProvider">Supplies culture-specific formatting information, or null.</param>
+            <param name="token">The input key as found on the Logentries website.</param>
+            <param name="useSsl">Indicates if you want to use SSL or not.</param>
+        </member>
+        <member name="M:Serilog.Sinks.Logentries.LogentriesSink.EmitBatch(System.Collections.Generic.IEnumerable{Serilog.Events.LogEvent})">
+            <summary>
+            Emit a batch of log events, running to completion synchronously.
+            </summary>
+            <param name="events">The events to emit.</param>
+            <remarks>
+            Override either <see cref="M:Serilog.Sinks.PeriodicBatching.PeriodicBatchingSink.EmitBatch(System.Collections.Generic.IEnumerable{Serilog.Events.LogEvent})" /> or <see cref="M:Serilog.Sinks.PeriodicBatching.PeriodicBatchingSink.EmitBatchAsync(System.Collections.Generic.IEnumerable{Serilog.Events.LogEvent})" />,
+            not both.
+            </remarks>
+        </member>
+        <member name="M:Serilog.Sinks.Logentries.LogentriesSink.Dispose(System.Boolean)">
+            <summary>
+            Dispose the connection.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+    </members>
+</doc>
