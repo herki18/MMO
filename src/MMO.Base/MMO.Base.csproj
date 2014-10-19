@@ -49,6 +49,8 @@
     <Compile Include="Infrastructure\BuildNumberAttribute.cs" />
     <Compile Include="Infrastructure\ComponentMap.cs" />
     <Compile Include="Infrastructure\ComponentMapBinaryFormatter.cs" />
+    <Compile Include="Infrastructure\EventCode.cs" />
+    <Compile Include="Infrastructure\EventCodeParameter.cs" />
     <Compile Include="Infrastructure\Extensions\ReflectionExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
     <Compile Include="Infrastructure\ICustomSerializer.cs" />
@@ -59,6 +61,8 @@
     <Compile Include="Infrastructure\MappedComponent.cs" />
     <Compile Include="Infrastructure\MappedMethod.cs" />
     <Compile Include="Infrastructure\MappedMethodReturnType.cs" />
+    <Compile Include="Infrastructure\OperationCode.cs" />
+    <Compile Include="Infrastructure\OperationParameter.cs" />
     <Compile Include="Infrastructure\RegisterdSystem.cs" />
     <Compile Include="Infrastructure\SimpleSerializer.cs" />
     <Compile Include="Infrastructure\ISystemBase.cs" />

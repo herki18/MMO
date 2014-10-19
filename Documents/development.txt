@@ -64,3 +64,11 @@ TeamCity
 
 // Groups
 asdasdasd
+
+
+Add 
+
+1. Nunit to msbuild
+2. Ncover
+
+

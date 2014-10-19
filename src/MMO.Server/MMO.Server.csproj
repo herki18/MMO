@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\..\lib\photon-server\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
@@ -55,7 +58,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientContext.cs" />
+    <Compile Include="ClientSystemBase`3.cs" />
+    <Compile Include="ClientSystems.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="IInternalSystem.cs" />
+    <Compile Include="IServerTransport.cs" />
+    <Compile Include="MMOPeer.cs" />
+    <Compile Include="PlayerContext.cs" />
+    <Compile Include="PlayerSystemBase`2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMO.Base\MMO.Base.csproj">
+      <Project>{D2957FEB-5A73-4E4D-B9EB-5F6E913F7A6A}</Project>
+      <Name>MMO.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

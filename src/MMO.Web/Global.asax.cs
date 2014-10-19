@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using MMO.Web.App_Start;
+using Serilog;
+using Serilog.Events;
 
 namespace MMO.Web
 {
@@ -20,6 +22,19 @@ namespace MMO.Web
             
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configuration.EnsureInitialized();
+
+            SetUpSerilog();
+        }
+
+        public void SetUpSerilog() {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.RollingFile("C:/Loggs/", LogEventLevel.Verbose)
+                .WriteTo.Seq("http://herki.cloudapp.net:5341")
+                .CreateLogger();
+
+            // Standard .NET format string, useful if you're migrating from another logger
+            Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
+ 
         }
     }
 }
