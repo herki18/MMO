@@ -1,21 +1,21 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
-using log4net;
 using MMO.Data;
 using MMO.Web.ViewModels;
+using Serilog;
 
 namespace MMO.Web.Controllers
 {
-    public class AuthController : Controller
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(AuthController));
+    public class AuthController : Controller {
+        private static readonly Serilog.ILogger Log = Serilog.Log.Logger;
         public ActionResult Login() {
             return View(new AuthLogin());
         }
 
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl) {
+            Log.Information("Test");
             Log.Debug("Logged in");
             if (!ModelState.IsValid) {
                 return View(form);

@@ -25,12 +25,12 @@ namespace MMO.Web
 
         public void SetUpSerilog() {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.RollingFile(@"C:\Loggs\", LogEventLevel.Verbose)
-                .WriteTo.Seq("http://herki.cloudapp.net:5341")
+                .WriteTo.Console(LogEventLevel.Verbose)
+                .WriteTo.Seq("http://herki.cloudapp.net:5341", LogEventLevel.Debug)
                 .CreateLogger();
 
-            // Standard .NET format string, useful if you're migrating from another logger
-            Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
+            //// Standard .NET format string, useful if you're migrating from another logger
+            //Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
  
         }
     }
