@@ -15,6 +15,7 @@ namespace MMO.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start() {
+            SetUpSerilog();
             log4net.Config.XmlConfigurator.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -23,7 +24,7 @@ namespace MMO.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configuration.EnsureInitialized();
 
-            SetUpSerilog();
+            
         }
 
         public void SetUpSerilog() {
