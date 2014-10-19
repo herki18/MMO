@@ -29,8 +29,8 @@ namespace MMO.Web
 
         public void SetUpSerilog() {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.Seq("http://herki.cloudapp.net:5341")
-                .CreateLogger();
+                      .WriteTo.File(@"C:\Loggs")
+                      .CreateLogger();
 
             //// Standard .NET format string, useful if you're migrating from another logger
             //Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
