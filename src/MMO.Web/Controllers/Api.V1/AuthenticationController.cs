@@ -4,19 +4,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using log4net;
 using MMO.Base.Api.V1;
 using MMO.Data;
-using MMO.Data.Entities;
 using MMO.Data.Services;
 using System.Data.Entity;
 
 namespace MMO.Web.Controllers.Api.V1
 {
     [RoutePrefix("api/v1/authentication")]
-    public class AuthenticationController : ApiController
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(AuthenticationController));
+    public class AuthenticationController : ApiController {
+        private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<AuthenticationController>(); 
         private readonly MMODatabseContext _database = new MMODatabseContext();
 
         [Route("validate"), HttpPost]
@@ -40,7 +37,7 @@ namespace MMO.Web.Controllers.Api.V1
                 
             }
             catch (Exception e) {     
-                Log.DebugFormat("Exception was throwen {0}, Stack {1}", e.Message, e.StackTrace);
+                Log.Error("Exception was throwen {0}, Stack {1}", e.Message, e.StackTrace);
             }
             return Request.CreateResponse(new AuthValidateResponse(true));
         }
@@ -62,7 +59,7 @@ namespace MMO.Web.Controllers.Api.V1
                 return Request.CreateResponse(new AuthGenerateTokenResponse(true, tokenSerive.GenerateTokenFor(requestIp, user)));
             }
             catch (Exception e) {
-                Log.DebugFormat("Exception was throwen {0}, Stack {1}", e.Message, e.StackTrace);
+                Log.Error("Exception was throwen {0}, Stack {1}", e.Message, e.StackTrace);
             }
 
             return Request.CreateResponse(HttpStatusCode.InternalServerError, new AuthGenerateTokenResponse(false, null));

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using log4net;
 using MMO.Base.Api.V1;
 using MMO.Data;
 using MMO.Data.Entities;
@@ -14,7 +13,7 @@ namespace MMO.Web.Controllers.Api.V1
     [RoutePrefix("api/v1/clients")]
     public class ClientController : ApiController
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ClientController));
+        private static readonly Serilog.ILogger Log = Serilog.Log.ForContext<ClientController>();
 
         private readonly MMODatabseContext _database = new MMODatabseContext();
         [Route("latest"), HttpGet]
