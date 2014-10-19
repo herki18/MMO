@@ -28,7 +28,6 @@ namespace MMO.Web
 
         public void SetUpSerilog() {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.RollingFile("C:/Loggs/", LogEventLevel.Verbose)
                 .WriteTo.Seq("http://herki.cloudapp.net:5341")
                 .CreateLogger();
 
