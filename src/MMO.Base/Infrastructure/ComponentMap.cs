@@ -12,18 +12,24 @@ namespace MMO.Base.Infrastructure {
         public byte ReservedComponentIdLimit { get; private set; }
         public MappedComponent[] Components { get; private set; }
         public MappedMethod[][] Methods { get; private set; }
+
         public IEnumerable<MappedComponent> AllComponents { get { return _typesToComponents.Values; } }
         public int ComponentCount { get { return _typesToComponents.Count; } }
 
         public ComponentMap() : this(0) {}
 
         public ComponentMap(byte reservedComponentIdLimit) {
-            ReservedComponentIdLimit = reservedComponentIdLimit;
             _typesToComponents = new Dictionary<Type, MappedComponent>();
+
             Components = new MappedComponent[byte.MaxValue + 1];
             Methods = new MappedMethod[byte.MaxValue + 1][];
 
-            _nextAutoMappedComponentId = reservedComponentIdLimit;
+            SetReserverComponentIdLimit(reservedComponentIdLimit);
+        }
+
+        internal void SetReserverComponentIdLimit(byte reservedComponentIdLimit) {
+            ReservedComponentIdLimit = reservedComponentIdLimit;
+            _nextAutoMappedComponentId = Math.Max(reservedComponentIdLimit, _nextAutoMappedComponentId);
         }
 
         public MappedComponent AutoMapComponent(Type componentType) {

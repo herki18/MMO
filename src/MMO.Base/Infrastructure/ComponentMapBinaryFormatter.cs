@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace MMO.Base.Infrastructure
 {
     public class ComponentMapBinaryFormatter
     {
-        public ComponentMap Load(BinaryReader reader) {
-            var map = new ComponentMap(reader.ReadByte());
+        public void Load(BinaryReader reader, ComponentMap map) {
+            map.SetReserverComponentIdLimit(reader.ReadByte());
             var componentCount = reader.ReadInt32();
 
             for (int i = 0; i < componentCount; i++) {
@@ -27,7 +28,11 @@ namespace MMO.Base.Infrastructure
                 }
 
             }
+        }
 
+        public ComponentMap Load(BinaryReader reader) {
+            var map = new ComponentMap();
+            Load(reader, map);
             return map;
         }
 

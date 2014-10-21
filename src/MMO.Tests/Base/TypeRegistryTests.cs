@@ -9,6 +9,9 @@ namespace MMO.Tests.Base {
         public class TestSystemBase<TServerInterface, TClientInterface> : ISystemBase<TServerInterface, TClientInterface> {
             public Type ServerSystemInterfaceType { get { return typeof (TServerInterface); } }
             public Type ClientSystemInterfaceType { get { return typeof (TClientInterface); } }
+
+            public void Dispose()
+            { }
         }
 
         public interface ITestSystem1Server {

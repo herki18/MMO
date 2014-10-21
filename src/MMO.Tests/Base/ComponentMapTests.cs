@@ -48,11 +48,45 @@ namespace MMO.Tests.Base {
         }
 
         class TestRpcResponse : IRpcResponse {
-             
+
+            public System.Collections.Generic.IEnumerable<string> OperationErrors
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public bool IsValid
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public object UntypedResult
+            {
+                get { throw new NotImplementedException(); }
+            }
         }
 
         class TestRpcResponse<T> : IRpcResponse<T>
-        { }
+        {
+            public T Result
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public System.Collections.Generic.IEnumerable<string> OperationErrors
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public bool IsValid
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public object UntypedResult
+            {
+                get { throw new NotImplementedException(); }
+            }
+        }
 
         class TestComponent7 : ITestComponent7 {
             public IRpcResponse Response1 { get; set; }

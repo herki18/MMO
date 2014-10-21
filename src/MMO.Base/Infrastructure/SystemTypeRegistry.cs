@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using System.Threading;
 
 namespace MMO.Base.Infrastructure {
     public class SystemTypeRegistry {
         private readonly Dictionary<Type, RegisterdSystem> _concreteTypeToSystem;
         private readonly Dictionary<Type, RegisterdSystem> _serverInterfaceTypeToSystem;
         private readonly Dictionary<Type, RegisterdSystem> _clientInterfaceTypeToSystem;
+        public IEnumerable<RegisterdSystem> RegisterdSystems { get { return _concreteTypeToSystem.Values; } } 
 
         public SystemTypeRegistry() {
             _concreteTypeToSystem = new Dictionary<Type, RegisterdSystem>();
@@ -18,7 +19,7 @@ namespace MMO.Base.Infrastructure {
         public void RegisterSystemFromConcreteType(Type concreteType) {
             foreach (var inter in concreteType.GetInterfaces()) {
                 if (!inter.IsGenericType || inter.GetGenericTypeDefinition() != typeof (ISystemBase<,>)) {
-                    continue;;
+                    continue;
                 }
 
                 var genericArguments = inter.GetGenericArguments();
@@ -35,8 +36,16 @@ namespace MMO.Base.Infrastructure {
         }
 
         public void ScanAssembly(Assembly assembly) {
+            ScanAssembly(assembly, null);
+        }
+
+        public void ScanAssembly(Assembly assembly, Type attributeFilter) {
             foreach (var type in assembly.GetTypes()) {
                 if (!type.IsClass || type.IsAbstract || !typeof (ISystemBase).IsAssignableFrom(type)) {
+                    continue;
+                }
+
+                if (attributeFilter != null && !type.GetCustomAttributes(attributeFilter, false).Any()) {
                     continue;
                 }
 
@@ -45,8 +54,12 @@ namespace MMO.Base.Infrastructure {
         }
 
         public void ScanAppDomain() {
+            ScanAppDomain(null);
+        }
+
+        public void ScanAppDomain(Type attributeFilter) {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                ScanAssembly(assembly);
+                ScanAssembly(assembly, attributeFilter);
             }
         }
 

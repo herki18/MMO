@@ -10,6 +10,7 @@ namespace MMO.Base.Infrastructure {
         public byte Id { get; private set; }
         public MappedMethodReturnType ReturnType { get; private set; }
         public Type ResultType { get; private set; }
+        public Type[] ParameterTypes { get; private set; }
 
         public Func<object, object[], IRpcResponse> Invoke { get; private set; } 
 
@@ -17,6 +18,7 @@ namespace MMO.Base.Infrastructure {
             Component = component;
             MethodInfo = methodInfo;
             Id = id;
+            ParameterTypes = methodInfo.GetParameters().Select(t => t.ParameterType).ToArray();
 
             if (methodInfo.ReturnType == typeof (void)) {
                 ReturnType = MappedMethodReturnType.Void;

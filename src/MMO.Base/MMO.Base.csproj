@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.1\lib\net35\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,10 +48,14 @@
     <Compile Include="Api.V1\AuthValidateResponse.cs" />
     <Compile Include="Api.V1\LatestClientResult.cs" />
     <Compile Include="Api.V1\LatestLauncherResult.cs" />
+    <Compile Include="Components\Systems\LoginSystem.cs" />
     <Compile Include="Infrastructure\BuildNumber.cs" />
     <Compile Include="Infrastructure\BuildNumberAttribute.cs" />
+    <Compile Include="Infrastructure\ComponentInterfaceAttribute.cs" />
     <Compile Include="Infrastructure\ComponentMap.cs" />
     <Compile Include="Infrastructure\ComponentMapBinaryFormatter.cs" />
+    <Compile Include="Infrastructure\ComponentProxyGenerator.cs" />
+    <Compile Include="Infrastructure\ContextType.cs" />
     <Compile Include="Infrastructure\EventCode.cs" />
     <Compile Include="Infrastructure\EventCodeParameter.cs" />
     <Compile Include="Infrastructure\Extensions\ReflectionExtensions.cs" />
@@ -63,12 +70,17 @@
     <Compile Include="Infrastructure\MappedMethodReturnType.cs" />
     <Compile Include="Infrastructure\OperationCode.cs" />
     <Compile Include="Infrastructure\OperationParameter.cs" />
+    <Compile Include="Infrastructure\OperationResponseCode.cs" />
+    <Compile Include="Infrastructure\OperationResponseParameter.cs" />
     <Compile Include="Infrastructure\RegisterdSystem.cs" />
     <Compile Include="Infrastructure\SimpleSerializer.cs" />
     <Compile Include="Infrastructure\ISystemBase.cs" />
     <Compile Include="Infrastructure\SystemTypeRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Time.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

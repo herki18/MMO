@@ -2,7 +2,7 @@
 using MMO.Base.Infrastructure;
 
 namespace MMO.Server {
-    public class ClientSystemBase<TContextType, TServerInterface, TClientInterface> : ISystemBase<TServerInterface, TClientInterface>, IInternalSystem
+    public abstract class ClientSystemBase<TContextType, TServerInterface, TClientInterface> : ISystemBase<TServerInterface, TClientInterface>, IInternalSystem
         where TContextType : ClientContext {
 
         public Type ServerSystemInterfaceType { get; private set; }
@@ -12,7 +12,16 @@ namespace MMO.Server {
         protected TClientInterface Proxy;
 
         public void Init(ClientContext client, object proxy) {
-            throw new NotImplementedException();
+            Context = (TContextType) client;
+            Proxy = (TClientInterface) proxy;
+
+            Awake();
         }
+
+        protected virtual void Awake()
+        { }
+
+        public virtual void Dispose()
+        { }
     }
 }

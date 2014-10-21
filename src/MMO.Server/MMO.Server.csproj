@@ -33,6 +33,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\..\lib\photon-server\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
@@ -62,6 +65,7 @@
     <Compile Include="ClientSystemBase`3.cs" />
     <Compile Include="ClientSystems.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventWriter.cs" />
     <Compile Include="IInternalSystem.cs" />
     <Compile Include="IServerTransport.cs" />
     <Compile Include="MMOPeer.cs" />
@@ -76,9 +80,7 @@
       <Name>MMO.Base</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
