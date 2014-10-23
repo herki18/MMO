@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MMO.Base.Infrastructure;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
+using Serilog;
 
 namespace MMO.Server {
     public class MMOPeer : PeerBase, IServerTransport {
@@ -30,11 +31,13 @@ namespace MMO.Server {
                 }
             }
             else {
+                Log.Debug("OnOperationRequest {OperationCode} and {OperationParameters}", operationCode, operationRequest.Parameters);
                 _clientContext.OnOperationRequest(operationCode, operationRequest.Parameters);
             }
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail) {
+            Log.Debug("OnDisconnect {ReasonCode} and {ReasonDetail}", reasonCode, reasonDetail);
             _clientContext.OnDisconnect();
         }
 

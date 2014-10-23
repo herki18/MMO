@@ -25,16 +25,6 @@ namespace MMO.Server.Master
 
         protected override void Setup() {
             SetUpSerilog();
-            //Log.Logger = new LoggerConfiguration()
-            //    .MinimumLevel.Debug()
-            //    .WriteTo.Logentries("ceae825c-f44d-41de-a7b8-18bb6a358808", false, 50, null, LogEventLevel.Debug)
-            //    //.WriteTo.Logentries("5e4801c4-2fca-49e0-9369-79cc7b138c79", false, 50, null, LogEventLevel.Debug)
-            //    .WriteTo.Seq("http://herki.cloudapp.net:5341", LogEventLevel.Debug)
-            //    .CreateLogger();
-
-            ////// Standard .NET format string, useful if you're migrating from another logger
-            //Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
-
         }
 
         protected override void TearDown() {
