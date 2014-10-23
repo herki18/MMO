@@ -51,6 +51,7 @@
     <Compile Include="Components\Systems\LoginSystem.cs" />
     <Compile Include="Infrastructure\BuildNumber.cs" />
     <Compile Include="Infrastructure\BuildNumberAttribute.cs" />
+    <Compile Include="Infrastructure\CallbackByteMap`1.cs" />
     <Compile Include="Infrastructure\ComponentInterfaceAttribute.cs" />
     <Compile Include="Infrastructure\ComponentMap.cs" />
     <Compile Include="Infrastructure\ComponentMapBinaryFormatter.cs" />
