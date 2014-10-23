@@ -15,6 +15,7 @@ namespace MMO.Server.Master
 
         public Application() {
             _application = new MasterServerContext(new SimpleSerializer());
+            SetUpSerilog();
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest) {
@@ -23,8 +24,26 @@ namespace MMO.Server.Master
         }
 
         protected override void Setup() {
+            //Log.Logger = new LoggerConfiguration()
+            //    .MinimumLevel.Debug()
+            //    .WriteTo.Logentries("ceae825c-f44d-41de-a7b8-18bb6a358808", false, 50, null, LogEventLevel.Debug)
+            //    //.WriteTo.Logentries("5e4801c4-2fca-49e0-9369-79cc7b138c79", false, 50, null, LogEventLevel.Debug)
+            //    .WriteTo.Seq("http://herki.cloudapp.net:5341", LogEventLevel.Debug)
+            //    .CreateLogger();
+
+            ////// Standard .NET format string, useful if you're migrating from another logger
+            //Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
+
+        }
+
+        protected override void TearDown() {
+        }
+
+        public void SetUpSerilog()
+        {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
+                .WriteTo.Console(LogEventLevel.Verbose)
                 .WriteTo.Logentries("ceae825c-f44d-41de-a7b8-18bb6a358808", false, 50, null, LogEventLevel.Debug)
                 //.WriteTo.Logentries("5e4801c4-2fca-49e0-9369-79cc7b138c79", false, 50, null, LogEventLevel.Debug)
                 .WriteTo.Seq("http://herki.cloudapp.net:5341", LogEventLevel.Debug)
@@ -33,9 +52,10 @@ namespace MMO.Server.Master
             //// Standard .NET format string, useful if you're migrating from another logger
             Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
 
-        }
+            //var position = new { Latitude = 25, Longitude = 134 };
+            //const int elapsedMs = 34;
 
-        protected override void TearDown() {
+            //Log.Information("Processed {@Position} in {Elapsed:000} ms.", position, elapsedMs);
         }
     }
 }
