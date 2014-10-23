@@ -15,7 +15,7 @@ namespace MMO.Server.Master
 
         public Application() {
             _application = new MasterServerContext(new SimpleSerializer());
-            SetUpSerilog();
+            
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest) {
@@ -24,6 +24,7 @@ namespace MMO.Server.Master
         }
 
         protected override void Setup() {
+            SetUpSerilog();
             //Log.Logger = new LoggerConfiguration()
             //    .MinimumLevel.Debug()
             //    .WriteTo.Logentries("ceae825c-f44d-41de-a7b8-18bb6a358808", false, 50, null, LogEventLevel.Debug)
