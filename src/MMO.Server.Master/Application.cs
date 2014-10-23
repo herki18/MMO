@@ -18,6 +18,7 @@ namespace MMO.Server.Master
         }
 
         protected override PeerBase CreatePeer(InitRequest initRequest) {
+            Log.Information("Test Create Peer");
             return new MMOPeer(_application, initRequest);
         }
 
