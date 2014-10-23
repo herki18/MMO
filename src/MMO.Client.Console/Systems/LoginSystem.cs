@@ -7,6 +7,10 @@ namespace MMO.Client.Console.Systems {
 
         private static readonly ILog Log = LogManager.GetLogger(typeof (LoginSystem));
 
+        protected override void Awake() {
+            Log.InfoFormat("Created Login system");
+        }
+
         public void BasicClientTest(string message) {
             Log.InfoFormat("Got Message: {0}", message);
         }

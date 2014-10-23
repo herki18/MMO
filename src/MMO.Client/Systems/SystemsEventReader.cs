@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using MMO.Base.Infrastructure;
 using MMO.Client.Infrastructure;
 
@@ -31,7 +30,7 @@ namespace MMO.Client.Systems {
             object[] arguments;
             var argumentBytes = (byte[]) parameters[(byte) EventCodeParameter.ArgumentsBytes];
 
-            using (var ms  =new MemoryStream())
+            using (var ms  =new MemoryStream(argumentBytes))
             using (var br = new BinaryReader(ms)) {
                 arguments = _serializer.ReadArguments(br, method.ParameterTypes);
             }
@@ -54,7 +53,7 @@ namespace MMO.Client.Systems {
             var formatter = new ComponentMapBinaryFormatter();
             var componentMapBytes = (byte[]) parameters[(byte) EventCodeParameter.ComponentMapBytes];
 
-            using (var ms = new MemoryStream()) 
+            using (var ms = new MemoryStream(componentMapBytes)) 
             using (var br = new BinaryReader(ms)) {
                 formatter.Load(br, _systems.ComponentMap);
             }

@@ -20,12 +20,14 @@ namespace MMO.Client.Console
             context.TypeRegistry.ScanAssembly(typeof(Program).Assembly);
 
 
-            transport.Connect("herki.cloudapp.net:5055", "MMO.Server.Master");
+            transport.Connect("herki.cloudapp.net:5055", "MMOMaster");
 
             while (true) {
                 transport.Service();
                 Thread.Sleep(10);
             }
+
+
         }
     }
 }

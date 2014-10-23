@@ -47,6 +47,7 @@ namespace MMO.Client.Infrastructure {
             Log.DebugFormat("Status Changed: {0}", statusCode);
 
             var transportStatus = statusCode == StatusCode.Connect ? ClientTransportStatus.Connected : ClientTransportStatus.Disconnected;
+
             foreach (var listener in Listeners) {
                 listener.TransportStatusChanged(transportStatus);
             }
