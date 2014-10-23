@@ -1,9 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
 using MMO.Base.Infrastructure;
 using Photon.SocketServer;
+using Serilog;
+using Serilog.Events;
 
 namespace MMO.Server.Master
 {
@@ -19,13 +22,16 @@ namespace MMO.Server.Master
         }
 
         protected override void Setup() {
-            var file = new FileInfo(Path.Combine(BinaryPath, "log4net.config"));
-            if (file.Exists)
-            {
-                LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);
-                XmlConfigurator.ConfigureAndWatch(file);
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Logentries("ceae825c-f44d-41de-a7b8-18bb6a358808", false, 50, null, LogEventLevel.Debug)
+                //.WriteTo.Logentries("5e4801c4-2fca-49e0-9369-79cc7b138c79", false, 50, null, LogEventLevel.Debug)
+                .WriteTo.Seq("http://herki.cloudapp.net:5341", LogEventLevel.Debug)
+                .CreateLogger();
 
-            }
+            //// Standard .NET format string, useful if you're migrating from another logger
+            Log.Information("Starting up on {0} with {1} bytes allocated", Environment.MachineName, Environment.WorkingSet);
+
         }
 
         protected override void TearDown() {
