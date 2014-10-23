@@ -17,16 +17,19 @@ namespace MMO.Server {
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters) {
             var operationCode = (OperationCode) operationRequest.OperationCode;
             if (_clientContext == null) {
-                
+                Log.Debug("ClientContext is null");
                 if (operationCode != OperationCode.InitContext) {
+                    Log.Error("Operation code {OperationCode} is not supported", operationCode);
                     throw new NotImplementedException(string.Format("Operation code {0} is not supported", operationCode));
                 }
 
                 var contextType = (ContextType) operationRequest.Parameters[(byte) OperationParameter.ContextType];
                 if (contextType == ContextType.Player) {
+                    Log.Debug("Creating new PlayerContext");
                     _clientContext = new PlayerContext(_application, this);
                 }
                 else {
+                    Log.Error("Context type {ContextType} is not valid", contextType);
                     throw new ArgumentException(string.Format("Context type {0} is not valid", contextType));
                 }
             }
@@ -44,11 +47,13 @@ namespace MMO.Server {
         #region IServerTransport
 
         public void SendData(Event @event) {
+            Log.Debug("SendData: {EventData} and {SendParameters}", @event.EventData, @event.SendParameters);
             SendEvent(@event.EventData, @event.SendParameters);
         }
 
         public void SendOperationResponse(OperationCode code, Dictionary<byte, object> parameters)
         {
+            Log.Debug("SendOperationResponse: {Code} and {Parameters}", code, parameters);
             SendOperationResponse(new OperationResponse((byte)code, parameters), Event.Reliable);
         }
 
